@@ -2,6 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.<asp:Image ID="Image1" runat="server" Height="117px" ImageUrl="~/Content/HEART-NSTA-Trust-Logo.png" Width="111px" />
+        <asp:Label ID="connlbl" runat="server" Text="Label"></asp:Label>
     </h2>
     <h3>Apply For Leave Down Below.</h3>
    <!-- <address>
@@ -24,15 +25,12 @@
     </div>
     <div>
         <label>Start Date</label>
-        <input type="date" data-date-inline-picker="true" runat="server" />
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date</label>
-        <input type="date" data-date-inline-picker="true" runat="server" /><br />
-        <br />
-&nbsp;<div>
-            Your Remaining Vaction Days Are: </div>
-        
+        <input type="date" data-date-inline-picker="true" runat="server" id="startdate"/>
 
+        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date</label>
+        <input type="date" data-date-inline-picker="true" runat="server" id="enddate" /><br />
         <br />
+&nbsp;<br />
         
 
     </div>
