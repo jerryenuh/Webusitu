@@ -8,46 +8,58 @@ using System.Data;
 using System.Data.Sql;
 using System.Web.Configuration;
 using System.Data.SqlClient;
+using System.Configuration;
 
 namespace Webusitu
 {
     public partial class Contact : Page
     {
+        SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
+        SqlCommand cmd = new SqlCommand();
+        SqlParameter sp1 = new SqlParameter();
+        SqlParameter sp2 = new SqlParameter();
+        SqlParameter sp3 = new SqlParameter();
+        SqlParameter sp4 = new SqlParameter();
 
-        string connectionString = WebConfigurationManager.ConnectionStrings["LeaveSystemDB"].ConnectionString;
 
-        
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            SqlConnection connection = new SqlConnection(connectionString);
-
-            if (connection != null && connection.State == ConnectionState.Closed)
-            {
-                connlbl.Text = "Connection has Active";
-
-            }
-            else
-            {
-                connlbl.Text = "Connection is failed";
-            }
-
+            
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
+            connection.Open();
+            
 
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
             
         {
-            SqlConnection connection = new SqlConnection(connectionString);
-            connection.Open();
-
-            SqlCommand cmd = new SqlCommand("insertLeave",connection);
-
+            int empid = Convert.ToInt32(txtID.Text);
+            int lastdays = Convert.ToInt32(txtDays.Text);
+            //string sql = "";
+            // SqlCommand command;
+            cmd = new SqlCommand("spInsLeaves", connection);
+            //cmd = new SqlCommand("calculateDays", connection);
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
+            
+            cmd.Parameters.AddWithValue("@empId", SqlDbType.Int).Value = empid;
+            cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
+            cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Value;
+            cmd.Parameters.AddWithValue("@endDay", SqlDbType.NVarChar).Value = enddate.Value;
+            cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@empid", SqlDbType.Int).Value = txtID.Text;
-            cmd.Parameters.AddWithValue("@lastdays", SqlDbType.Int).Value = txtDays.Text;
-            cmd.Parameters.AddWithValue("@startDay", SqlDbType.VarChar).Value = startdate.Value;
-            cmd.Parameters.AddWithValue("@endDay", SqlDbType.VarChar).Value = enddate.Value;
+            connection.Open();
+            cmd.ExecuteNonQuery();
+            connection.Close();
+
+            // command = new SqlCommand(sql, connection);
+            //adapter.InsertCommand = new SqlCommand(sql, connection);
+            //adapter.InsertCommand.ExecuteNonQuery();
+            //command.Dispose();
+            connection.Close();
         }
     }
 }

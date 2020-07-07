@@ -30,7 +30,8 @@
         <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date</label>
         <input type="date" data-date-inline-picker="true" runat="server" id="enddate" /><br />
         <br />
-&nbsp;<br />
+&nbsp;<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="SELECT * FROM [leaves]"></asp:SqlDataSource>
+        <br />
         
 
     </div>
