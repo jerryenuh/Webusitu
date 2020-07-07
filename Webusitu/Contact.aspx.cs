@@ -40,7 +40,7 @@ namespace Webusitu
             int lastdays = Convert.ToInt32(txtDays.Text);
             //string sql = "";
             // SqlCommand command;
-            cmd = new SqlCommand("spInsLeaves", connection);
+            cmd = new SqlCommand("spFindUserID", connection);
             //cmd = new SqlCommand("calculateDays", connection);
             SqlDataAdapter adapter = new SqlDataAdapter();
             connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
@@ -49,7 +49,7 @@ namespace Webusitu
             cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
             cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Value;
             cmd.Parameters.AddWithValue("@endDay", SqlDbType.NVarChar).Value = enddate.Value;
-            cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
+            cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = NULL;
             cmd.CommandType = CommandType.StoredProcedure;
             connection.Open();
             cmd.ExecuteNonQuery();
