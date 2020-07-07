@@ -14,21 +14,25 @@
     <div>
         <label>ID</label>
         <asp:TextBox ID="txtID" runat="server" />
+        <asp:RequiredFieldValidator runat="server" ID="rfID" ControlToValidate="txtID" ErrorMessage="Please Enter ID Number" />
         <br />
         <br />
     </div>
     <div>
         <label>Leave Day/s amount</label>
         <asp:TextBox ID="txtDays" runat="server" />
+        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="txtDays" ErrorMessage="Please Enter Amount of Vaction Days Required" />
         <br />
         <br />
     </div>
     <div>
         <label>Start Date</label>
         <input type="date" data-date-inline-picker="true" runat="server" id="startdate"/>
+        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="startdate" Display="Dynamic" ErrorMessage="Please a beginning date" />
 
         <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date</label>
-        <input type="date" data-date-inline-picker="true" runat="server" id="enddate" /><br />
+        <input type="date" data-date-inline-picker="true" runat="server" id="enddate" />
+        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="enddate" Display="Dynamic" ErrorMessage="Please a end date" />
         <br />
 &nbsp;<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="SELECT * FROM [leaves]"></asp:SqlDataSource>
         <br />
