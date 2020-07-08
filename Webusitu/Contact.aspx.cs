@@ -44,7 +44,7 @@ namespace Webusitu
             
             while (rd.Read())
             {
-                if (rd[1].ToString() == txtID.Text)
+                if (rd.ToString() == txtID.Text)
                 {
                     flag = true;
                     break;
@@ -83,7 +83,7 @@ namespace Webusitu
             }
             else
             {
-                errorlbl.Text = "WORK!";
+                errorlbl.Text = "The Id you have entered does not exist so please contact 1800-SMACKAHOE";
             }
 
             connection.Close();
