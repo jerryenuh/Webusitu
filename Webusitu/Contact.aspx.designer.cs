@@ -24,15 +24,6 @@ namespace Webusitu
         protected global::System.Web.UI.WebControls.Image Image1;
 
         /// <summary>
-        /// connlbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label connlbl;
-
-        /// <summary>
         /// txtID control.
         /// </summary>
         /// <remarks>
@@ -40,6 +31,15 @@ namespace Webusitu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtID;
+
+        /// <summary>
+        /// errorlbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorlbl;
 
         /// <summary>
         /// rfID control.

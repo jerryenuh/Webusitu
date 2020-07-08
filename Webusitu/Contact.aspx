@@ -2,7 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %>.<asp:Image ID="Image1" runat="server" Height="117px" ImageUrl="~/Content/HEART-NSTA-Trust-Logo.png" Width="111px" />
-        <asp:Label ID="connlbl" runat="server" Text="Label"></asp:Label>
     </h2>
     <h3>Apply For Leave Down Below.</h3>
    <!-- <address>
@@ -14,6 +13,7 @@
     <div>
         <label>ID</label>
         <asp:TextBox ID="txtID" runat="server" />
+        <asp:Label ID="errorlbl" runat="server" Text="" BackColor="White" Font-Bold="True" Font-Italic="True" ForeColor="Red"></asp:Label>
         <asp:RequiredFieldValidator runat="server" ID="rfID" ControlToValidate="txtID" ErrorMessage="Please Enter ID Number" />
         <br />
         <br />
