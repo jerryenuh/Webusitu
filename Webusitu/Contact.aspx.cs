@@ -49,15 +49,11 @@ namespace Webusitu
                     flag = true;
                     break;
                 }
-            }
-            if (flag == false)
-            {
-                //Message that ID doesnt exist
-                errorlbl.Text = "Your ID Does Not Exist";
                 
             }
-            else
+            if (flag == true)
             {
+                //errorlbl.Visible = false;
                 //Code to send things to DB
                 int empid = Convert.ToInt32(txtID.Text);
                 int lastdays = Convert.ToInt32(txtDays.Text);
@@ -76,13 +72,18 @@ namespace Webusitu
                 cmd.CommandType = CommandType.StoredProcedure;
                 //connection.Open();
                 cmd.ExecuteNonQuery();
-                rd.Close();
+                //rd.Close();
                 connection.Close();
 
                 // command = new SqlCommand(sql, connection);
                 //adapter.InsertCommand = new SqlCommand(sql, connection);
                 //adapter.InsertCommand.ExecuteNonQuery();
                 //command.Dispose(); 
+
+            }
+            else
+            {
+                errorlbl.Text = "WORK!";
             }
 
             connection.Close();
