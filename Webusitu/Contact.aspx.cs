@@ -21,6 +21,7 @@ namespace Webusitu
         SqlParameter sp3 = new SqlParameter();
         SqlParameter sp4 = new SqlParameter();
         bool flag = false;
+        String test;
 
 
         protected void Page_Load(object sender, EventArgs e)
