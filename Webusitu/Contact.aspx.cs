@@ -39,12 +39,12 @@ namespace Webusitu
         {
             
             cmd.Connection = connection;
-            cmd.CommandText = "select * from [leaves]";
+            cmd.CommandText = "select * from [dbo].[employee]";
             SqlDataReader rd = cmd.ExecuteReader();
             
             while (rd.Read())
             {
-                if (rd.ToString() == txtID.Text)
+                if (rd[0].ToString() == txtID.Text)
                 {
                     flag = true;
                     break;
@@ -83,7 +83,7 @@ namespace Webusitu
             }
             else
             {
-                errorlbl.Text = "The Id you have entered does not exist so please contact 1800-SMACKAHOE";
+                errorlbl.Text = "The Id you have entered does not exist so please try again";
             }
 
             connection.Close();

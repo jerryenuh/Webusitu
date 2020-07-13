@@ -41,6 +41,7 @@
     </div>
     <div>
         <asp:Button ID="btnSubmit" runat="server" Text="Submit Info" OnClick="btnSubmit_Click"/>
+        <asp:Label ID="testlbl" runat="server" Text="Label"></asp:Label>
     </div>
    <!-- <div class="message">
         <asp:Literal ID="ItMessage" runat="server" />
