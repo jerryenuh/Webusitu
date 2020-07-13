@@ -55,8 +55,8 @@ namespace Webusitu
             rd.Close();
             if (flag == true)
             {
-                
-                
+
+
 
                 //errorlbl.Visible = false;
                 //Code to send things to DB
@@ -66,40 +66,61 @@ namespace Webusitu
                 SqlCommand com = new SqlCommand("select daysRemain from [employee] where Id =@Id", connection);
                 cmd.Parameters.AddWithValue("@Id", int.Parse(txtID.Text));
                 SqlDataReader read = cmd.ExecuteReader();
+                int daysRemain;
+                int calDRamains;
+               // int daysRemain2;
 
                 while (read.Read())
                 {
-                    testlbl.Text = read.GetValue(6).ToString();
+                    daysRemain = Convert.ToInt32(read.GetValue(6).ToString());
+                    daysRemain --;
+                    calDRamains = daysRemain - lastdays;
+                    testlbl.Text = daysRemain.ToString();
+                    if (calDRamains >= 0)
+                    {
+                        cmd = new SqlCommand("spFindUserID", connection);
+                        //cmd = new SqlCommand("calculateDays", connection);
+                        SqlDataAdapter adapter = new SqlDataAdapter();
+                        connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
+
+
+
+                        cmd.Parameters.AddWithValue("@empId", SqlDbType.Int).Value = empid;
+                        cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
+                        cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Value;
+                        cmd.Parameters.AddWithValue("@endDay", SqlDbType.NVarChar).Value = enddate.Value;
+                        cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
+
+                        //adapter = new SqlDataAdapter("select id from [employee] id =" + empid + "", connection);
+
+
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //connection.Open();
+                        cmd.ExecuteNonQuery();
+                        //rd.Close();
+                        connection.Close();
+
+                        // command = new SqlCommand(sql, connection);
+                        //adapter.InsertCommand = new SqlCommand(sql, connection);
+                        //adapter.InsertCommand.ExecuteNonQuery();
+                        //command.Dispose(); 
+                    }
+                    else
+                    {
+                        testlbl.Text = "You have no days left or you have exceeded the amount of days";
+                        testlbl.Text = "You have no days left or you have exceeded the amount of days";
+                    }
 
                 }
                 read.Close();
+                
+                
 
-                cmd = new SqlCommand("spFindUserID", connection);
-                //cmd = new SqlCommand("calculateDays", connection);
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
+                   
                 
 
 
-                cmd.Parameters.AddWithValue("@empId", SqlDbType.Int).Value = empid;
-                cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
-                cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Value;
-                cmd.Parameters.AddWithValue("@endDay", SqlDbType.NVarChar).Value = enddate.Value;
-                cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
-                
-                //adapter = new SqlDataAdapter("select id from [employee] id =" + empid + "", connection);
-                
 
-                cmd.CommandType = CommandType.StoredProcedure;
-                //connection.Open();
-                cmd.ExecuteNonQuery();
-                //rd.Close();
-                connection.Close();
-
-                // command = new SqlCommand(sql, connection);
-                //adapter.InsertCommand = new SqlCommand(sql, connection);
-                //adapter.InsertCommand.ExecuteNonQuery();
-                //command.Dispose(); 
 
             }
             else
