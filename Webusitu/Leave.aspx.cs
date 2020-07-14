@@ -105,10 +105,14 @@ namespace Webusitu
                         //adapter.InsertCommand.ExecuteNonQuery();
                         //command.Dispose(); 
                     }
+                    else if (calDRamains == 0)
+                    {
+                        
+                        testlbl.Text = "You have no days left to use";
+                    }
                     else
                     {
-                        testlbl.Text = "You have no days left or you have exceeded the amount of days";
-                        testlbl.Text = "You have no days left or you have exceeded the amount of days";
+                        testlbl.Text = "You have went over the amount of days you have remaining. {0}" + daysRemain;
                     }
 
                 }
