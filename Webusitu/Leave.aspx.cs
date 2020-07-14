@@ -30,7 +30,10 @@ namespace Webusitu
             SqlDataAdapter adapter = new SqlDataAdapter();
             connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
             connection.Open();
-            
+            leavediv.Visible = false;
+            datediv.Visible = false;
+            submitdiv.Visible = false;
+
 
 
         }
@@ -48,6 +51,8 @@ namespace Webusitu
                 if (rd[0].ToString() == txtID.Text)
                 {
                     flag = true;
+                    leavediv.Visible = true;
+                    datediv.Visible = true;
                     break;
                 }
                 
@@ -57,7 +62,9 @@ namespace Webusitu
             {
 
 
-
+                //leavediv.Visible = true;
+                //datediv.Visible = true;
+                //submitdiv.Visible = true;
                 //errorlbl.Visible = false;
                 //Code to send things to DB
                 int empid = Convert.ToInt32(txtID.Text);
@@ -88,7 +95,6 @@ namespace Webusitu
                         cmd.Parameters.AddWithValue("@empId", SqlDbType.Int).Value = empid;
                         cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
                         cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Value;
-                        cmd.Parameters.AddWithValue("@endDay", SqlDbType.NVarChar).Value = enddate.Value;
                         cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
 
                         //adapter = new SqlDataAdapter("select id from [employee] id =" + empid + "", connection);
@@ -130,9 +136,42 @@ namespace Webusitu
             else
             {
                 errorlbl.Text = "The Id you have entered does not exist so please try again";
+                leavediv.Visible = false;
+                datediv.Visible = false;
+                //submitdiv.Visible = false;
             }
 
             connection.Close();
+        }
+
+        protected void idsubmitbtn_Click(object sender, EventArgs e)
+        {
+            cmd.Connection = connection;
+            cmd.CommandText = "select * from [dbo].[employee]";
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            while (rd.Read())
+            {
+                if (rd[0].ToString() == txtID.Text)
+                {
+                    flag = true;
+                    leavediv.Visible = true;
+                    datediv.Visible = true;
+                    submitdiv.Visible = true;
+                    idsubmitbtn.Visible = false;
+                    errorlbl.Text = "";
+                    
+                    break;
+                }
+                else
+                {
+                    errorlbl.Text = "The Id you have entered does not exist so please try again";
+                    leavediv.Visible = false;
+                    datediv.Visible = false;
+                }
+
+            }
+            rd.Close();
         }
     }
 }
