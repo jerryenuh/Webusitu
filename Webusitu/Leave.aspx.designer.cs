@@ -42,15 +42,6 @@ namespace Webusitu
         protected global::System.Web.UI.WebControls.Label errorlbl;
 
         /// <summary>
-        /// rfID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfID;
-
-        /// <summary>
         /// idsubmitbtn control.
         /// </summary>
         /// <remarks>
@@ -78,15 +69,6 @@ namespace Webusitu
         protected global::System.Web.UI.WebControls.TextBox txtDays;
 
         /// <summary>
-        /// RequiredFieldValidator1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator1;
-
-        /// <summary>
         /// datediv control.
         /// </summary>
         /// <remarks>
@@ -102,16 +84,16 @@ namespace Webusitu
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl startdate;
+        protected global::System.Web.UI.WebControls.TextBox startdate;
 
         /// <summary>
-        /// RequiredFieldValidator2 control.
+        /// ImageButton1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
+        protected global::System.Web.UI.WebControls.ImageButton ImageButton1;
 
         /// <summary>
         /// enddatetxt control.
@@ -121,6 +103,15 @@ namespace Webusitu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox enddatetxt;
+
+        /// <summary>
+        /// calendar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Calendar calendar;
 
         /// <summary>
         /// SqlDataSource1 control.

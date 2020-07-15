@@ -20,6 +20,7 @@ namespace Webusitu
         SqlParameter sp2 = new SqlParameter();
         SqlParameter sp3 = new SqlParameter();
         SqlParameter sp4 = new SqlParameter();
+        
         bool flag = false;
         //String test;
 
@@ -30,12 +31,50 @@ namespace Webusitu
             SqlDataAdapter adapter = new SqlDataAdapter();
             connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
             connection.Open();
-            leavediv.Visible = false;
-            datediv.Visible = false;
-            submitdiv.Visible = false;
+            if (!IsPostBack)
+            {
+
+
+                leavediv.Visible = false;
+                datediv.Visible = false;
+                submitdiv.Visible = false;
+               
+            }
+                //errorlbl.Text = "The Id you have entered does not exist so please try again";
 
 
 
+            }
+
+        protected void idsubmitbtn_Click(object sender, EventArgs e)
+        {
+            cmd.Connection = connection;
+            cmd.CommandText = "select * from [dbo].[employee]";
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            while (rd.Read())
+            {
+                if (rd[0].ToString() == txtID.Text)
+                {
+                    flag = true;
+                    leavediv.Visible = true;
+                    datediv.Visible = true;
+                    submitdiv.Visible = true;
+                    idsubmitbtn.Visible = false;
+                    errorlbl.Text = "";
+                    calendar.Visible = false;
+
+                    break;
+                }
+                else
+                {
+                    errorlbl.Text = "The Id you have entered does not exist so please try again";
+                    leavediv.Visible = false;
+                    datediv.Visible = false;
+                }
+
+            }
+            rd.Close();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -60,15 +99,10 @@ namespace Webusitu
             rd.Close();
             if (flag == true)
             {
-
-
-                //leavediv.Visible = true;
-                //datediv.Visible = true;
-                //submitdiv.Visible = true;
-                //errorlbl.Visible = false;
                 //Code to send things to DB
                 int empid = Convert.ToInt32(txtID.Text);
                 int lastdays = Convert.ToInt32(txtDays.Text);
+                int dayamount= Convert.ToInt32(txtDays.Text);
 
                 SqlCommand com = new SqlCommand("select daysRemain from [employee] where Id =@Id", connection);
                 cmd.Parameters.AddWithValue("@Id", int.Parse(txtID.Text));
@@ -81,6 +115,7 @@ namespace Webusitu
                 {
                     daysRemain = Convert.ToInt32(read.GetValue(6).ToString());
                     daysRemain --;
+
                     calDRamains = daysRemain - lastdays;
                     testlbl.Text = daysRemain.ToString();
                     if (calDRamains >= 0)
@@ -94,22 +129,19 @@ namespace Webusitu
 
                         cmd.Parameters.AddWithValue("@empId", SqlDbType.Int).Value = empid;
                         cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
-                        cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Value;
+                        //cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Value;
                         cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
+                        
+           
 
                         //adapter = new SqlDataAdapter("select id from [employee] id =" + empid + "", connection);
 
 
                         cmd.CommandType = CommandType.StoredProcedure;
-                        //connection.Open();
+                        
                         cmd.ExecuteNonQuery();
-                        //rd.Close();
+                        
                         connection.Close();
-
-                        // command = new SqlCommand(sql, connection);
-                        //adapter.InsertCommand = new SqlCommand(sql, connection);
-                        //adapter.InsertCommand.ExecuteNonQuery();
-                        //command.Dispose(); 
                     }
                     else if (calDRamains == 0)
                     {
@@ -144,34 +176,63 @@ namespace Webusitu
             connection.Close();
         }
 
-        protected void idsubmitbtn_Click(object sender, EventArgs e)
+        protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            cmd.Connection = connection;
-            cmd.CommandText = "select * from [dbo].[employee]";
-            SqlDataReader rd = cmd.ExecuteReader();
-
-            while (rd.Read())
+            if(calendar.Visible == true)
             {
-                if (rd[0].ToString() == txtID.Text)
-                {
-                    flag = true;
-                    leavediv.Visible = true;
-                    datediv.Visible = true;
-                    submitdiv.Visible = true;
-                    idsubmitbtn.Visible = false;
-                    errorlbl.Text = "";
-                    
-                    break;
-                }
-                else
-                {
-                    errorlbl.Text = "The Id you have entered does not exist so please try again";
-                    leavediv.Visible = false;
-                    datediv.Visible = false;
-                }
-
+                calendar.Visible = false;
             }
-            rd.Close();
+            else
+            {
+                calendar.Visible = true;
+            }
+
+        }
+
+        protected void Calendar1_SelectionChanged(object sender, EventArgs e)
+        {
+            startdate.Text = calendar.SelectedDate.ToShortDateString();
+            calendar.Visible = false;
+            int dayamount = Convert.ToInt32(txtDays.Text);
+            calendar.SelectedDate.AddDays(dayamount);
+            DateTime newDate = Convert.ToDateTime(calendar.SelectedDate).AddDays(dayamount);
+
+            enddatetxt.Text = newDate.ToShortDateString();
+
+            
+        }
+
+        protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
+        {
+            if(e.Day.IsOtherMonth || e.Day.IsWeekend)
+            {
+                e.Day.IsSelectable = false;
+            }
+        }
+
+        protected void txtDays_TextChanged(object sender, EventArgs e)
+        {
+
+            try
+            {
+                int dayamount = Convert.ToInt32(txtDays.Text);
+                calendar.SelectedDate.AddDays(dayamount);
+                DateTime newDate = Convert.ToDateTime(calendar.SelectedDate).AddDays(dayamount);
+
+                enddatetxt.Text = newDate.ToShortDateString();
+            }
+            catch (Exception)
+            {
+                txtDays.Text = "0";
+            }
+            
+
+
+        }
+
+        protected void startdate_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
