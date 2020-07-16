@@ -9,6 +9,7 @@ using System.Data.Sql;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Configuration;
+using FluentDateTime;
 
 namespace Webusitu
 {
@@ -189,16 +190,20 @@ namespace Webusitu
 
         }
 
+
+
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
             startdate.Text = calendar.SelectedDate.ToShortDateString();
             calendar.Visible = false;
             int dayamount = Convert.ToInt32(txtDays.Text);
-            calendar.SelectedDate.AddDays(dayamount);
-            DateTime newDate = Convert.ToDateTime(calendar.SelectedDate).AddDays(dayamount);
+            //calendar.SelectedDate.AddDays(dayamount);
+            DateTime newDate = Convert.ToDateTime(calendar.SelectedDate);
+            newDate = DateTime.Now.AddBusinessDays(dayamount);
 
             enddatetxt.Text = newDate.ToShortDateString();
 
+         
             
         }
 
@@ -210,6 +215,7 @@ namespace Webusitu
             }
         }
 
+
         protected void txtDays_TextChanged(object sender, EventArgs e)
         {
 
@@ -217,7 +223,8 @@ namespace Webusitu
             {
                 int dayamount = Convert.ToInt32(txtDays.Text);
                 calendar.SelectedDate.AddDays(dayamount);
-                DateTime newDate = Convert.ToDateTime(calendar.SelectedDate).AddDays(dayamount);
+                DateTime newDate = Convert.ToDateTime(calendar.SelectedDate);
+                newDate = DateTime.Now.AddBusinessDays(dayamount);
 
                 enddatetxt.Text = newDate.ToShortDateString();
             }
