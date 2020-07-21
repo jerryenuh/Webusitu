@@ -16,8 +16,6 @@
         <asp:Label ID="errorlbl" runat="server" Text="" BackColor="White" Font-Bold="True" Font-Italic="True" ForeColor="Red"></asp:Label>
         
         <br />
-        
-        <br />
         <asp:Button ID="idsubmitbtn" runat="server" OnClick="idsubmitbtn_Click" Text="Search" />
         <br />
     </div>
