@@ -9,6 +9,9 @@ using System.Data.Sql;
 using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Configuration;
+using FluentDateTime;
+using Nager.Date;
+using Nager.Date.Model;
 
 namespace Webusitu
 {
@@ -24,7 +27,50 @@ namespace Webusitu
         bool flag = false;
         //String test;
 
+        public DateTime weekendCheck(DateTime sDate)
+        {
+            DateTime eDate = new DateTime();
 
+            eDate = sDate;
+
+            // make sure it is not a saturday or Sunday
+            // if it is add another day
+            while (sDate.DayOfWeek == DayOfWeek.Saturday || sDate.DayOfWeek == DayOfWeek.Sunday || isHoliday(sDate) == true)
+            {
+
+                sDate = sDate.AddDays(1);
+                System.Diagnostics.Debug.WriteLine(sDate);
+               // return eDate;
+            }
+           
+                // More than one day so add days day by day and check each time for
+                // weekend. do recursively
+
+                return sDate;
+            
+        }
+
+        private bool isHoliday(DateTime eDate)
+        {
+            bool status = false;   // not holiday is default
+
+            try
+            {
+                // Always holidays are Jan 1, Dec 25, 26 and Aug 1,6
+                if (eDate.Month == 1 && eDate.Day == 1)
+                    status = true;
+                else if (eDate.Month == 12 && (eDate.Day == 25 || eDate.Day == 26))
+                    status = true;
+                else if (eDate.Month == 8 && (eDate.Day == 1 || eDate.Day == 6))
+                    status = true;
+               
+            }
+            catch (Exception)
+            {
+                System.Diagnostics.Debug.WriteLine("Failed");
+            }
+            return status;
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             
@@ -82,6 +128,7 @@ namespace Webusitu
         {
             
             cmd.Connection = connection;
+            
             cmd.CommandText = "select * from [dbo].[employee]";
             SqlDataReader rd = cmd.ExecuteReader();
             
@@ -100,7 +147,7 @@ namespace Webusitu
             if (flag == true)
             {
                 //Code to send things to DB
-                int empid = Convert.ToInt32(txtID.Text);
+                string empid = txtID.Text;
                 int lastdays = Convert.ToInt32(txtDays.Text);
                 int dayamount= Convert.ToInt32(txtDays.Text);
 
@@ -113,7 +160,7 @@ namespace Webusitu
 
                 while (read.Read())
                 {
-                    daysRemain = Convert.ToInt32(read.GetValue(6).ToString());
+                    daysRemain = Convert.ToInt32(read.GetValue(7).ToString());
                     daysRemain --;
 
                     calDRamains = daysRemain - lastdays;
@@ -125,19 +172,20 @@ namespace Webusitu
                         SqlDataAdapter adapter = new SqlDataAdapter();
                         connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
 
-
-
-                        cmd.Parameters.AddWithValue("@empId", SqlDbType.Int).Value = empid;
+                        connection.Open();
+                        cmd.Connection = connection;
+                        cmd.Parameters.AddWithValue("@empId", SqlDbType.NVarChar).Value = txtID.Text;
                         cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
-                        //cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Value;
-                        cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
-                        
-           
+                        cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Text;
+                        cmd.Parameters.AddWithValue("@endDay", SqlDbType.NVarChar).Value = enddatetxt.Text;
+                        //cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
+
 
                         //adapter = new SqlDataAdapter("select id from [employee] id =" + empid + "", connection);
 
 
                         cmd.CommandType = CommandType.StoredProcedure;
+
                         
                         cmd.ExecuteNonQuery();
                         
@@ -150,7 +198,7 @@ namespace Webusitu
                     }
                     else
                     {
-                        testlbl.Text = "You have went over the amount of days you have remaining. {0}" + daysRemain;
+                        testlbl.Text = "You have went over the amount of days you have remaining. You have" + daysRemain++ + "days.";
                     }
 
                 }
@@ -191,11 +239,23 @@ namespace Webusitu
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
+            
             startdate.Text = calendar.SelectedDate.ToShortDateString();
             calendar.Visible = false;
             int dayamount = Convert.ToInt32(txtDays.Text);
-            calendar.SelectedDate.AddDays(dayamount);
-            DateTime newDate = Convert.ToDateTime(calendar.SelectedDate).AddDays(dayamount);
+            //calendar.SelectedDate.AddDays(dayamount);
+            //check for weekends 
+            DateTime newDate = new DateTime();
+
+            newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
+            System.Diagnostics.Debug.WriteLine(newDate);
+            System.Diagnostics.Debug.WriteLine(dayamount);
+            /* you orginally had
+             *      weekendCheck(newDate);
+             * when it was suppose to be
+             *      newDate = weekendCheck(newDate);
+             */
+            newDate = weekendCheck(newDate);
 
             enddatetxt.Text = newDate.ToShortDateString();
 
@@ -216,9 +276,13 @@ namespace Webusitu
             try
             {
                 int dayamount = Convert.ToInt32(txtDays.Text);
-                calendar.SelectedDate.AddDays(dayamount);
-                DateTime newDate = Convert.ToDateTime(calendar.SelectedDate).AddDays(dayamount);
-
+                //calendar.SelectedDate.AddDays(dayamount);
+                //check for weekends
+                DateTime newDate = new DateTime();
+                newDate = Convert.ToDateTime(calendar.SelectedDate);
+                newDate = weekendCheck(newDate); 
+                newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
+                
                 enddatetxt.Text = newDate.ToShortDateString();
             }
             catch (Exception)
