@@ -63,13 +63,34 @@ namespace Webusitu
                     status = true;
                 else if (eDate.Month == 8 && (eDate.Day == 1 || eDate.Day == 6))
                     status = true;
+                else
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandText = "select * from [dbo].[holidays]";
+                    SqlDataReader rd = cmd.ExecuteReader();
+                    string compDate = "" + eDate.Month + "/" + eDate.Day + "/" + eDate.Year;
+                    System.Diagnostics.Debug.WriteLine(compDate);
+                    while (rd.Read())
+                    {
+                        if (string.Equals(rd[0].ToString(),compDate))
+                        {
+                            status = true;
+
+                            break;
+                        }
+                        System.Diagnostics.Debug.WriteLine(status);
+                    }
+                    rd.Close();
+                }
                
             }
             catch (Exception)
             {
                 System.Diagnostics.Debug.WriteLine("Failed");
             }
+
             return status;
+            
         }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -164,7 +185,7 @@ namespace Webusitu
                     daysRemain --;
 
                     calDRamains = daysRemain - lastdays;
-                    testlbl.Text = daysRemain.ToString();
+                    testlbl.Text = "You have " + daysRemain.ToString() +"remaining";
                     if (calDRamains >= 0)
                     {
                         cmd = new SqlCommand("spFindUserID", connection);
