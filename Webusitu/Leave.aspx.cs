@@ -61,6 +61,7 @@ namespace Webusitu
                     status = true;
                 else if (eDate.Month == 12 && (eDate.Day == 25 || eDate.Day == 26))
                     status = true;
+
                 else if (eDate.Month == 8 && (eDate.Day == 1 || eDate.Day == 6))
                     status = true;
                 else
@@ -78,7 +79,7 @@ namespace Webusitu
 
                             break;
                         }
-                        System.Diagnostics.Debug.WriteLine(status);
+                        //System.Diagnostics.Debug.WriteLine(status);
                     }
                     rd.Close();
                 }
@@ -172,20 +173,22 @@ namespace Webusitu
                 int lastdays = Convert.ToInt32(txtDays.Text);
                 int dayamount= Convert.ToInt32(txtDays.Text);
 
-                SqlCommand com = new SqlCommand("select daysRemain from [employee] where Id =@Id", connection);
+                cmd.CommandText = "select daysRemain from[employee] where Id = @Id";
+                
+                //SqlCommand com = new SqlCommand("select daysRemain from [employee] where Id =@Id", connection);
                 cmd.Parameters.AddWithValue("@Id", int.Parse(txtID.Text));
                 SqlDataReader read = cmd.ExecuteReader();
-                int daysRemain;
-                int calDRamains;
-               // int daysRemain2;
+                int daysRemain=0;
+                int calDRamains =0;
+                // int daysRemain2;
 
                 while (read.Read())
                 {
-                    daysRemain = Convert.ToInt32(read.GetValue(7).ToString());
-                    daysRemain --;
-
-                    calDRamains = daysRemain - lastdays;
-                    testlbl.Text = "You have " + daysRemain.ToString() +"remaining";
+                    daysRemain = Convert.ToInt32(read.GetValue(0).ToString());
+                    break;
+                    //System.Diagnostics.Debug.WriteLine(daysRemain);
+                    
+                }
                     if (calDRamains >= 0)
                     {
                         cmd = new SqlCommand("spFindUserID", connection);
@@ -199,13 +202,15 @@ namespace Webusitu
                         cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
                         cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Text;
                         cmd.Parameters.AddWithValue("@endDay", SqlDbType.NVarChar).Value = enddatetxt.Text;
-                        //cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
+                    //cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
+                        //daysRemain--;
+                        calDRamains = daysRemain - lastdays;
+                        testlbl.Text = "You have " + calDRamains.ToString() + " days remaining";
+
+                    //adapter = new SqlDataAdapter("select id from [employee] id =" + empid + "", connection);
 
 
-                        //adapter = new SqlDataAdapter("select id from [employee] id =" + empid + "", connection);
-
-
-                        cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                         
                         cmd.ExecuteNonQuery();
@@ -222,17 +227,8 @@ namespace Webusitu
                         testlbl.Text = "You have went over the amount of days you have remaining. You have" + daysRemain++ + "days.";
                     }
 
-                }
+                
                 read.Close();
-                
-                
-
-                   
-                
-
-
-
-
             }
             else
             {
@@ -261,7 +257,7 @@ namespace Webusitu
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
             
-            startdate.Text = calendar.SelectedDate.ToShortDateString();
+            startdate.Text = calendar.SelectedDate.ToString("MM/dd/yyyy");
             calendar.Visible = false;
             int dayamount = Convert.ToInt32(txtDays.Text);
             //calendar.SelectedDate.AddDays(dayamount);
@@ -269,6 +265,7 @@ namespace Webusitu
             DateTime newDate = new DateTime();
 
             newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
+            
             System.Diagnostics.Debug.WriteLine(newDate);
             System.Diagnostics.Debug.WriteLine(dayamount);
             /* you orginally had
@@ -277,8 +274,8 @@ namespace Webusitu
              *      newDate = weekendCheck(newDate);
              */
             newDate = weekendCheck(newDate);
-
-            enddatetxt.Text = newDate.ToShortDateString();
+            string NewDate = newDate.ToString("MM/dd/yyyy");
+            enddatetxt.Text = newDate.ToString("MM/dd/yyyy");
 
             
         }
@@ -303,8 +300,8 @@ namespace Webusitu
                 newDate = Convert.ToDateTime(calendar.SelectedDate);
                 newDate = weekendCheck(newDate); 
                 newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
-                
-                enddatetxt.Text = newDate.ToShortDateString();
+                string NewDate = newDate.ToString("MM/dd/yyyy");
+                enddatetxt.Text = newDate.ToString("MM/dd/yyyy");
             }
             catch (Exception)
             {
