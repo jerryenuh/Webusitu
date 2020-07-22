@@ -70,16 +70,17 @@ namespace Webusitu
                     cmd.CommandText = "select * from [dbo].[holidays]";
                     SqlDataReader rd = cmd.ExecuteReader();
                     string compDate = "" + eDate.Month + "/" + eDate.Day + "/" + eDate.Year;
+                    System.Diagnostics.Debug.WriteLine(eDate);
                     System.Diagnostics.Debug.WriteLine(compDate);
                     while (rd.Read())
                     {
-                        if (string.Equals(rd[0].ToString(),compDate))
+                        if (rd[0].ToString() == compDate)
                         {
                             status = true;
 
                             break;
                         }
-                        //System.Diagnostics.Debug.WriteLine(status);
+                        System.Diagnostics.Debug.WriteLine(status);
                     }
                     rd.Close();
                 }
@@ -172,11 +173,12 @@ namespace Webusitu
                 string empid = txtID.Text;
                 int lastdays = Convert.ToInt32(txtDays.Text);
                 int dayamount= Convert.ToInt32(txtDays.Text);
+                string Department = "";
 
                 cmd.CommandText = "select daysRemain from[employee] where Id = @Id";
                 
                 //SqlCommand com = new SqlCommand("select daysRemain from [employee] where Id =@Id", connection);
-                cmd.Parameters.AddWithValue("@Id", int.Parse(txtID.Text));
+                cmd.Parameters.AddWithValue("@Id", txtID.Text);
                 SqlDataReader read = cmd.ExecuteReader();
                 int daysRemain=0;
                 int calDRamains =0;
@@ -189,7 +191,22 @@ namespace Webusitu
                     //System.Diagnostics.Debug.WriteLine(daysRemain);
                     
                 }
-                    if (calDRamains >= 0)
+                
+                //Reading the Department from employee table
+                cmd.Connection = connection;
+                cmd.CommandText = "select Department from[employee] where Id = @Id";
+                
+                
+                while (read.Read())
+                {
+                    Department = read.GetValue(0).ToString();
+                    break;
+                    //System.Diagnostics.Debug.WriteLine(daysRemain);
+
+                }
+                read.Close();
+
+                if (calDRamains >= 0)
                     {
                         cmd = new SqlCommand("spFindUserID", connection);
                         //cmd = new SqlCommand("calculateDays", connection);
@@ -198,13 +215,14 @@ namespace Webusitu
 
                         connection.Open();
                         cmd.Connection = connection;
-                        cmd.Parameters.AddWithValue("@empId", SqlDbType.NVarChar).Value = txtID.Text;
+                        cmd.Parameters.AddWithValue("@empId", SqlDbType.VarChar).Value = txtID.Text;
                         cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
-                        cmd.Parameters.AddWithValue("@startDay", SqlDbType.NVarChar).Value = startdate.Text;
-                        cmd.Parameters.AddWithValue("@endDay", SqlDbType.NVarChar).Value = enddatetxt.Text;
+                        cmd.Parameters.AddWithValue("@startDay", SqlDbType.VarChar).Value = startdate.Text;
+                        cmd.Parameters.AddWithValue("@endDay", SqlDbType.VarChar).Value = enddatetxt.Text;
+                        cmd.Parameters.AddWithValue("@Department", SqlDbType.VarChar).Value = Department;
                     //cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
-                        //daysRemain--;
-                        calDRamains = daysRemain - lastdays;
+                    //daysRemain--;
+                    calDRamains = daysRemain - lastdays;
                         testlbl.Text = "You have " + calDRamains.ToString() + " days remaining";
 
                     //adapter = new SqlDataAdapter("select id from [employee] id =" + empid + "", connection);
@@ -228,7 +246,7 @@ namespace Webusitu
                     }
 
                 
-                read.Close();
+                
             }
             else
             {
@@ -257,7 +275,7 @@ namespace Webusitu
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
             
-            startdate.Text = calendar.SelectedDate.ToString("MM/dd/yyyy");
+            startdate.Text = calendar.SelectedDate.ToShortDateString();
             calendar.Visible = false;
             int dayamount = Convert.ToInt32(txtDays.Text);
             //calendar.SelectedDate.AddDays(dayamount);
@@ -273,9 +291,10 @@ namespace Webusitu
              * when it was suppose to be
              *      newDate = weekendCheck(newDate);
              */
+            
             newDate = weekendCheck(newDate);
-            string NewDate = newDate.ToString("MM/dd/yyyy");
-            enddatetxt.Text = newDate.ToString("MM/dd/yyyy");
+            
+            enddatetxt.Text = newDate.ToShortDateString();
 
             
         }
@@ -300,8 +319,8 @@ namespace Webusitu
                 newDate = Convert.ToDateTime(calendar.SelectedDate);
                 newDate = weekendCheck(newDate); 
                 newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
-                string NewDate = newDate.ToString("MM/dd/yyyy");
-                enddatetxt.Text = newDate.ToString("MM/dd/yyyy");
+               
+                enddatetxt.Text = newDate.ToShortDateString();
             }
             catch (Exception)
             {
