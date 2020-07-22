@@ -191,12 +191,12 @@ namespace Webusitu
                     //System.Diagnostics.Debug.WriteLine(daysRemain);
                     
                 }
-                
-                //Reading the Department from employee table
-                cmd.Connection = connection;
+                read.Close();
+                cmd.Parameters.Clear();
+             //Reading the Department from employee table
                 cmd.CommandText = "select Department from[employee] where Id = @Id";
-                
-                
+                cmd.Parameters.AddWithValue("@Id", txtID.Text);
+                read = cmd.ExecuteReader();
                 while (read.Read())
                 {
                     Department = read.GetValue(0).ToString();
