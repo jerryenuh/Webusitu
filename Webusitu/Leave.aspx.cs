@@ -10,8 +10,6 @@ using System.Web.Configuration;
 using System.Data.SqlClient;
 using System.Configuration;
 using FluentDateTime;
-using Nager.Date;
-using Nager.Date.Model;
 
 namespace Webusitu
 {
@@ -121,7 +119,9 @@ namespace Webusitu
             cmd.Connection = connection;
             cmd.CommandText = "select * from [dbo].[employee]";
             SqlDataReader rd = cmd.ExecuteReader();
-
+            string daysRemain ="";
+            string Fname= "";
+            
             while (rd.Read())
             {
                 if (rd[0].ToString() == txtID.Text)
@@ -133,7 +133,9 @@ namespace Webusitu
                     idsubmitbtn.Visible = false;
                     errorlbl.Text = "";
                     calendar.Visible = false;
-
+                    Fname = "" + rd.GetValue(1).ToString() + " " + rd.GetValue(2).ToString();
+                    daysRemain = rd.GetValue(6).ToString();
+                    errorlbl.Text = "Welcome " + Fname + " you have, " + daysRemain +" days remaining";
                     break;
                 }
                 else
@@ -306,11 +308,16 @@ namespace Webusitu
             {
                 e.Day.IsSelectable = false;
             }
+
+            if (e.Day.Date.CompareTo(DateTime.Today) < 0)
+            {
+                e.Day.IsSelectable = false;
+            }
         }
 
         protected void txtDays_TextChanged(object sender, EventArgs e)
         {
-
+            
             try
             {
                 int dayamount = Convert.ToInt32(txtDays.Text);
@@ -320,8 +327,20 @@ namespace Webusitu
                 newDate = Convert.ToDateTime(calendar.SelectedDate);
                 newDate = weekendCheck(newDate); 
                 newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
-               
-                enddatetxt.Text = newDate.ToShortDateString();
+                if (txtDays.Text==String.Empty)
+                {
+                    enddatetxt.Text = " ";
+                }
+                else
+                {
+                    enddatetxt.Text = newDate.ToShortDateString();
+                }
+
+                if (startdate.Text == String.Empty || txtDays.Text == String.Empty)
+                {
+                    enddatetxt.Text = "";
+                }
+
             }
             catch (Exception)
             {
@@ -334,7 +353,12 @@ namespace Webusitu
 
         protected void startdate_TextChanged(object sender, EventArgs e)
         {
-            
+            calendar.SelectedDate = Convert.ToDateTime(startdate.Text);
+
+            if (startdate.Text == String.Empty  ||txtDays.Text == String.Empty)
+            {
+                enddatetxt.Text = "";
+            }
         }
     }
 }

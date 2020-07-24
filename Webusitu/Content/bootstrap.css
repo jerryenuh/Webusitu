@@ -1274,6 +1274,7 @@ h3,
 .h3 {
   font-size: 24px;
     margin-left: 40px;
+    height: 0px;
 }
 h4,
 .h4 {
@@ -1289,6 +1290,7 @@ h6,
 }
 p {
   margin: 0 0 10px;
+    height: 5px;
 }
 .lead {
   margin-bottom: 20px;

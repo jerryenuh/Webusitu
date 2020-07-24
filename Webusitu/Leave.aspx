@@ -3,7 +3,8 @@
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <h2><%: Title %><asp:Image ID="Image1" runat="server" Height="117px" ImageUrl="~/Content/HEART-NSTA-Trust-Logo.png" Width="111px" />
     </h2>
-    <h3>Apply For Leave Down Below.</h3>
+    <h2>Apply For Leave Down Below.</h2>
+    <p>&nbsp;</p>
     <script>
         function validate() {
             confirm("Press Ok To Confirm?");lue;
@@ -28,7 +29,7 @@
     </div>
     <div id="datediv" runat="server">
         <label>Start Date</label>&nbsp;
-        <asp:TextBox ID="startdate" runat="server" Width="129px" OnTextChanged="startdate_TextChanged" ReadOnly="True"></asp:TextBox>
+        <asp:TextBox ID="startdate" runat="server" Width="129px" OnTextChanged="startdate_TextChanged" placeholder ="mm/dd/yyyy"></asp:TextBox>
 
         <label>
         <asp:ImageButton ID="ImageButton1" runat="server" OnClick="ImageButton1_Click" Width="22px" ImageUrl="~/Content/Calendar.png" />
