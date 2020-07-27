@@ -8,7 +8,7 @@
     <asp:Label ID="holidaylbl" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Enter Holiday Below"></asp:Label>
     <br />
     <div style="height: 201px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px">
-        <asp:GridView ID="gvHoliday" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowCommand="gvHoliday_RowCommand" OnRowEditing="gvHoliday_RowEditing" OnRowDeleting="gvHoliday_RowDeleting" OnRowCancelingEdit="gvHoliday_RowCancelingEdit" OnRowUpdating="gvHoliday_RowUpdating" showHeaderWhenEmpty="true" ShowFooter="true" DataKeyNames="days" AutoGenerateColumns ="false" Height="125px" Width="252px" OnSelectedIndexChanged="gvHoliday_SelectedIndexChanged">
+        <asp:GridView ID="gvHoliday" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowCommand="gvHoliday_RowCommand" OnRowEditing="gvHoliday_RowEditing" OnRowDeleting="gvHoliday_RowDeleting" OnRowCancelingEdit="gvHoliday_RowCancelingEdit" OnRowUpdating="gvHoliday_RowUpdating" showHeaderWhenEmpty="true" ShowFooter="true" DataKeyNames="Id" On AutoGenerateColumns ="false" Height="125px" Width="252px" >
             <%-- Theme Properties --%>
             <AlternatingRowStyle BackColor="White" />
             <EditRowStyle BackColor="#2461BF" />
@@ -28,11 +28,12 @@
                         <asp:Label Text ='<%#Eval("days") %>' runat="server" />
                     </ItemTemplate>
                     <EditItemTemplate>
-                        <asp:TextBox ID="txtdays" Text ='<%#Eval("days") %>' runat="server" />
+                        <asp:TextBox ID="txtDays" Text ='<%#Eval("days") %>' runat="server" />
+                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDays" PopupButtonID="calendarimg" DefaultView="Days" Format="dd/MM/yyyy" />
                     </EditItemTemplate>
                     <FooterTemplate>
-                         <asp:TextBox ID="holidaytxt2" runat="server" />
-                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="holidaytxt2" PopupButtonID="calendarimg" DefaultView="Days" Format="dd/MM/yyyy" />
+                         <asp:TextBox ID="txtDaysFooter" runat="server" foreColor="black" />
+                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDaysFooter" PopupButtonID="calendarimg" DefaultView="Days" Format="dd/MM/yyyy" />
                     </FooterTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -59,16 +60,15 @@
     </div>
     <br />
     <br />
-    <asp:TextBox ID="holidaytxt" runat="server" placeholder="dd/mm/yyyy"></asp:TextBox>
+    <%--- <asp:TextBox ID="holidaytxt" runat="server" placeholder="dd/mm/yyyy"></asp:TextBox>
     
-    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="holidaytxt2" PopupButtonID="calendarimg" DefaultView="Days" Format="dd/MM/yyyy" />
+    <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="holidaytxt2" PopupButtonID="calendarimg" DefaultView="Days" Format="dd/MM/yyyy" /> --%>
 
-    <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
-    <asp:Label ID="errorlbl" runat="server"></asp:Label>
+    
     <div>
     </div>
     <br />
     <br />
     <br />
-    <ajaxToolkit:ConfirmButtonExtender ID="ConfirmButtonExtender1" runat="server" OnClientCancel="CancelClick" ConfirmText="Are You Sure?" TargetControlID="Button1" />
+    
     </asp:Content>

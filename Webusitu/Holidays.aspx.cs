@@ -60,22 +60,7 @@ namespace Webusitu
         protected void Button1_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-                connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
-                string date = holidaytxt2.Text;
-                cmd.Connection = connection;
-                connection.Open();
-                cmd.CommandText = "insert into holidays(days) VALUES (@date)";
-                cmd.Parameters.AddWithValue("@date", SqlDbType.VarChar).Value = date;
-                cmd.ExecuteNonQuery();
-                connection.Close();
-                errorlbl.Text = "Successfully Added";
-            }
-            catch
-            {
-                errorlbl.Text = " ERROR!";
-            }
+            
         }
 
         protected void gvHoliday_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -87,11 +72,11 @@ namespace Webusitu
 
                     using (connection)
                     {
-                        string date = holidaytxt2.Text;
+                        //string date = holidaytxt2.Text;
                         cmd.Connection = connection;
                         connection.Open();
                         cmd.CommandText = "insert into holidays(days) VALUES (@date)";
-                        cmd.Parameters.AddWithValue("@date", (gvHoliday.FooterRow.FindControl("holidaytxt2.Text")as TextBox).Text.Trim());
+                        cmd.Parameters.AddWithValue("@date", (gvHoliday.FooterRow.FindControl("txtDaysFooter") as TextBox).Text.Trim());
                         cmd.ExecuteNonQuery();
                         PopulateGridView();
                         lblSuccessMessage.Text = "New Record Added";
@@ -127,8 +112,8 @@ namespace Webusitu
                     cmd.Connection = connection;
                     connection.Open();
                     cmd.CommandText = "UPDATE holidays SET days = @date WHERE Id = @Id";
-                    cmd.Parameters.AddWithValue("@date", (gvHoliday.Rows[e.RowIndex].FindControl("holidaytxt") as TextBox).Text.Trim());
-                    cmd.Parameters.AddWithValue("@date", Convert.ToInt32(gvHoliday.DataKeys[e.RowIndex].Value.ToString()));
+                    cmd.Parameters.AddWithValue("@date", (gvHoliday.Rows[e.RowIndex].FindControl("txtDays") as TextBox).Text.Trim());
+                    cmd.Parameters.AddWithValue("@Id", Convert.ToInt32(gvHoliday.DataKeys[e.RowIndex].Value.ToString()));
 
                     cmd.ExecuteNonQuery();
                     gvHoliday.EditIndex = -1;
@@ -146,15 +131,16 @@ namespace Webusitu
 
         protected void gvHoliday_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            try
-            {
+            //try
+            //{
                 using (connection)
                 {
-                    
+                    string id = gvHoliday.DataKeys[e.RowIndex].Value.ToString();
+                    System.Diagnostics.Debug.WriteLine(id);
                     cmd.Connection = connection;
                     connection.Open();
                     cmd.CommandText = "DELETE FROM holidays WHERE Id = @Id";
-                    cmd.Parameters.AddWithValue("@date", Convert.ToInt32(gvHoliday.DataKeys[e.RowIndex].Value.ToString()));
+                    cmd.Parameters.AddWithValue("@Id", Convert.ToInt32(gvHoliday.DataKeys[e.RowIndex].Value.ToString()));
 
                     cmd.ExecuteNonQuery();
                     PopulateGridView();
@@ -162,16 +148,11 @@ namespace Webusitu
                     lblErrorMessage.Text = "";
                 }
             }
-            catch (Exception ex)
+            /*catch (Exception ex)
             {
                 lblSuccessMessage.Text = "";
                 lblErrorMessage.Text = ex.Message;
-            }
+            }*/
         }
 
-        protected void gvHoliday_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
-}
