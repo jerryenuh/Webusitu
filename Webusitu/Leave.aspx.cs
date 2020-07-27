@@ -296,8 +296,29 @@ namespace Webusitu
              */
             
             newDate = weekendCheck(newDate);
+
+            cmd.Connection = connection;
+
+            cmd.CommandText = "select startDay, endDay from [dbo].[leaves]";
+            SqlDataReader rd = cmd.ExecuteReader();
+
+            while (rd.Read())
+            {
+                string startDay =rd[0].ToString();
+                string beginningofall = calendar.SelectedDate.ToShortDateString();
+                DateTime beginningDateTime = Convert.ToDateTime(beginningofall);
+                DateTime startDayy = Convert.ToDateTime(startDay);
+                string endDay = rd[1].ToString();
+                DateTime endDayy = Convert.ToDateTime(endDay);
+                if (newDate <= endDayy && beginningDateTime >=startDayy)
+                {
+                    errorlbl.Text = "You cannot apply for leave in this time period";
+
+                }
+
+            }
+            rd.Close();
             
-            enddatetxt.Text = newDate.ToShortDateString();
 
             
         }
