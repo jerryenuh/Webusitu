@@ -197,7 +197,7 @@ namespace Webusitu
                 read.Close();
                 cmd.Parameters.Clear();
              //Reading the Department from employee table
-                cmd.CommandText = "select Department from[employee] where Id = @Id";
+                cmd.CommandText = "select DepartmentID from[employee] where Id = @Id";
                 cmd.Parameters.AddWithValue("@Id", txtID.Text);
                 read = cmd.ExecuteReader();
                 while (read.Read())
@@ -222,7 +222,7 @@ namespace Webusitu
                         cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
                         cmd.Parameters.AddWithValue("@startDay", SqlDbType.VarChar).Value = startdate.Text;
                         cmd.Parameters.AddWithValue("@endDay", SqlDbType.VarChar).Value = enddatetxt.Text;
-                        cmd.Parameters.AddWithValue("@Department", SqlDbType.VarChar).Value = Department;
+                        cmd.Parameters.AddWithValue("@DepartmentID", SqlDbType.VarChar).Value = Department;
                     //cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
                     //daysRemain--;
                     calDRamains = daysRemain - lastdays;
@@ -294,6 +294,19 @@ namespace Webusitu
              * when it was suppose to be
              *      newDate = weekendCheck(newDate);
              */
+            if (txtDays.Text==String.Empty)
+                {
+                    enddatetxt.Text = " ";
+                }
+                else
+                {
+                    enddatetxt.Text = newDate.ToShortDateString();
+                }
+
+                if (startdate.Text == String.Empty || txtDays.Text == String.Empty)
+                {
+                    enddatetxt.Text = "";
+                }
             
             newDate = weekendCheck(newDate);
 
@@ -310,7 +323,7 @@ namespace Webusitu
                 DateTime startDayy = Convert.ToDateTime(startDay);
                 string endDay = rd[1].ToString();
                 DateTime endDayy = Convert.ToDateTime(endDay);
-                if (newDate <= endDayy && beginningDateTime >=startDayy)
+                if (newDate <= endDayy || beginningDateTime >=startDayy)
                 {
                     errorlbl.Text = "You cannot apply for leave in this time period";
 
