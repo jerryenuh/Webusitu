@@ -84,7 +84,9 @@ namespace Webusitu
 
         protected void addEmployeeBtn_Click(object sender, EventArgs e)
         {
+            cmd.Parameters.Clear();
             addEmployeeDiv.Visible = true;
+            
         }
 
         protected void updateBtn_Click(object sender, EventArgs e)
