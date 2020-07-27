@@ -25,7 +25,7 @@
         <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="firstnametxt" Display="Dynamic" ErrorMessage="*" />
         <br />
         <br />
-        Last Name :&nbsp; <asp:TextBox ID="lastnametxt" runat="server"></asp:TextBox>
+        Last Name :&nbsp; <asp:TextBox ID="lastnametxt" runat="server" Height="16px"></asp:TextBox>
         <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="lastnametxt" Display="Dynamic" ErrorMessage="*" />
         <br />
         <br />

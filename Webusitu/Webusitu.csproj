@@ -113,6 +113,9 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="Content\Calendar.png" />
+    <Content Include="Content\delete.png" />
+    <Content Include="Content\Edit.png" />
+    <Content Include="Content\Save.png" />
     <Content Include="Holidays.aspx" />
     <Content Include="Leave.aspx" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -144,6 +147,17 @@
     </None>
     <Content Include="DataSet1.xss">
       <DependentUpon>DataSet1.xsd</DependentUpon>
+    </Content>
+    <Content Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -190,6 +204,11 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Holidays.aspx.cs">
       <DependentUpon>Holidays.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
