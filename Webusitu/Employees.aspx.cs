@@ -128,5 +128,10 @@ namespace Webusitu
             rd.Close();
             connection.Close();
         }
+
+        protected void updateEmpbtn_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
     }

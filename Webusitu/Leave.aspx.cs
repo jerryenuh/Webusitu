@@ -211,6 +211,12 @@ namespace Webusitu
 
                 if (calDRamains >= 0)
                     {
+                    DateTime startDate = new DateTime();
+                    string cStartDate = startdate.Text;
+                    startDate = Convert.ToDateTime(cStartDate);
+                    DateTime endDate = new DateTime();
+                    string cEndDate = enddatetxt.Text;
+                    endDate = Convert.ToDateTime(cEndDate);
                         cmd = new SqlCommand("spFindUserID", connection);
                         //cmd = new SqlCommand("calculateDays", connection);
                         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -220,8 +226,8 @@ namespace Webusitu
                         cmd.Connection = connection;
                         cmd.Parameters.AddWithValue("@empId", SqlDbType.VarChar).Value = txtID.Text;
                         cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
-                        cmd.Parameters.AddWithValue("@startDay", SqlDbType.VarChar).Value = startdate.Text;
-                        cmd.Parameters.AddWithValue("@endDay", SqlDbType.VarChar).Value = enddatetxt.Text;
+                    cmd.Parameters.AddWithValue("@startDay", SqlDbType.Date).Value = startDate.ToString("MMM dd,yyyy");
+                    cmd.Parameters.AddWithValue("@endDay", SqlDbType.Date).Value = endDate.ToString("MMM dd,yyyy");
                         cmd.Parameters.AddWithValue("@DepartmentID", SqlDbType.VarChar).Value = Department;
                     //cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
                     //daysRemain--;
@@ -323,10 +329,10 @@ namespace Webusitu
                 DateTime startDayy = Convert.ToDateTime(startDay);
                 string endDay = rd[1].ToString();
                 DateTime endDayy = Convert.ToDateTime(endDay);
-                if (newDate <= endDayy || beginningDateTime >=startDayy)
+                if (beginningDateTime >=startDayy && beginningDateTime<=startDayy)
                 {
                     errorlbl.Text = "You cannot apply for leave in this time period";
-
+                    break;
                 }
 
             }

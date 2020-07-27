@@ -97,7 +97,7 @@
         <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="SELECT [Name] FROM [Department]"></asp:SqlDataSource>
         <br />
         <br />
-        <asp:Button ID="updateEmpbtn" runat="server" Text="Submit" />
+        <asp:Button ID="updateEmpbtn" runat="server" Text="Submit" OnClick="updateEmpbtn_Click" />
         </div>
     <br />
         <asp:Button ID="searchButton" runat="server" Text="Search" OnClick="searchButton_Click" />

@@ -8,19 +8,18 @@
     <asp:Label ID="holidaylbl" runat="server" Font-Bold="True" Font-Size="X-Large" Text="Enter Holiday Below"></asp:Label>
     <br />
     <div style="height: 201px; margin-left: 10px; margin-top: 10px; margin-bottom: 10px">
-        <asp:GridView ID="gvHoliday" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowCommand="gvHoliday_RowCommand" OnRowEditing="gvHoliday_RowEditing" OnRowDeleting="gvHoliday_RowDeleting" OnRowCancelingEdit="gvHoliday_RowCancelingEdit" OnRowUpdating="gvHoliday_RowUpdating" showHeaderWhenEmpty="true" ShowFooter="true" DataKeyNames="Id" On AutoGenerateColumns ="false" Height="125px" Width="252px" >
+        <asp:GridView ID="gvHoliday" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" OnRowCommand="gvHoliday_RowCommand" OnRowEditing="gvHoliday_RowEditing" OnRowDeleting="gvHoliday_RowDeleting" OnRowCancelingEdit="gvHoliday_RowCancelingEdit" OnRowUpdating="gvHoliday_RowUpdating" showHeaderWhenEmpty="True" ShowFooter="True" DataKeyNames="Id" AutoGenerateColumns ="False" Height="125px" Width="252px" >
             <%-- Theme Properties --%>
             <AlternatingRowStyle BackColor="White" />
-            <EditRowStyle BackColor="#2461BF" />
-            <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-            <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-            <RowStyle BackColor="#EFF3FB" />
-            <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-            <SortedAscendingCellStyle BackColor="#F5F7FB" />
-            <SortedAscendingHeaderStyle BackColor="#6D95E1" />
-            <SortedDescendingCellStyle BackColor="#E9EBEF" />
-            <SortedDescendingHeaderStyle BackColor="#4870BE" />
+            <FooterStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <HeaderStyle BackColor="#990000" Font-Bold="True" ForeColor="White" />
+            <PagerStyle BackColor="#FFCC66" ForeColor="#333333" HorizontalAlign="Center" />
+            <RowStyle BackColor="#FFFBD6" ForeColor="#333333" />
+            <SelectedRowStyle BackColor="#FFCC66" Font-Bold="True" ForeColor="Navy" />
+            <SortedAscendingCellStyle BackColor="#FDF5AC" />
+            <SortedAscendingHeaderStyle BackColor="#4D0000" />
+            <SortedDescendingCellStyle BackColor="#FCF6C0" />
+            <SortedDescendingHeaderStyle BackColor="#820000" />
 
             <Columns>
                 <asp:TemplateField HeaderText ="days">
@@ -29,11 +28,11 @@
                     </ItemTemplate>
                     <EditItemTemplate>
                         <asp:TextBox ID="txtDays" Text ='<%#Eval("days") %>' runat="server" />
-                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDays" PopupButtonID="calendarimg" DefaultView="Days" Format="dd/MM/yyyy" />
+                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDays" PopupButtonID="calendarimg" DefaultView="Days" Format="MMM dd,yyyy" />
                     </EditItemTemplate>
                     <FooterTemplate>
                          <asp:TextBox ID="txtDaysFooter" runat="server" foreColor="black" />
-                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDaysFooter" PopupButtonID="calendarimg" DefaultView="Days" Format="dd/MM/yyyy" />
+                         <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="txtDaysFooter" PopupButtonID="calendarimg" DefaultView="Days" Format="MMM dd,yyyy" />
                     </FooterTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField>
@@ -48,7 +47,6 @@
                     <FooterTemplate>
                         <asp:ImageButton ImageUrl="~/Content/Save.png" runat="server" CommandName="Add New" ToolTip="Add New" Width="20px" Height="20px" />
                     </FooterTemplate>
-
                 </asp:TemplateField>
             </Columns>
         </asp:GridView>
