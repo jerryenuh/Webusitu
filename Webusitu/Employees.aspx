@@ -17,26 +17,27 @@
         <br />
         ID:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="IDtxt" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="IDtxt" Display="Dynamic" ErrorMessage="*" />
+        <%--- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator1" ControlToValidate="IDtxt" Display="Dynamic" ErrorMessage="*" />--%>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
         <br />
         First Name :&nbsp; <asp:TextBox ID="firstnametxt" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="firstnametxt" Display="Dynamic" ErrorMessage="*" />
+         <%--- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator2" ControlToValidate="firstnametxt" Display="Dynamic" ErrorMessage="*" />--%>
         <br />
         <br />
         Last Name :&nbsp; <asp:TextBox ID="lastnametxt" runat="server" Height="16px"></asp:TextBox>
-        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="lastnametxt" Display="Dynamic" ErrorMessage="*" />
+        <%--- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator7" ControlToValidate="lastnametxt" Display="Dynamic" ErrorMessage="*" />--%>
         <br />
         <br />
         Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="emailtxt" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="emailtxt" Display="Dynamic" ErrorMessage="*" />
+        <%--- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator3" ControlToValidate="emailtxt" Display="Dynamic" ErrorMessage="*" />--%>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
         <br />
         Telephone:&nbsp;&nbsp;
-        <asp:TextBox ID="telephonetxt" runat="server"></asp:TextBox>&nbsp;<asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="telephonetxt" Display="Dynamic" ErrorMessage="*" />
+        <asp:TextBox ID="telephonetxt" runat="server"></asp:TextBox>&nbsp;
+        <%---<asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator4" ControlToValidate="telephonetxt" Display="Dynamic" ErrorMessage="*" />--%>
 
         <br />
         <br />
@@ -44,7 +45,7 @@
         <asp:DropDownList ID="departmentDD" runat="server" DataSourceID="SqlDataSource1" DataTextField="Name" DataValueField="Name">
         </asp:DropDownList>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="SELECT [Name] FROM [Department]"></asp:SqlDataSource>
-        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="departmentDD" Display="Dynamic" ErrorMessage="*" />
+        <%--- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator5" ControlToValidate="departmentDD" Display="Dynamic" ErrorMessage="*" />--%>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
         
@@ -69,18 +70,18 @@
     <div id="updateDiv1" runat="server">
         <asp:Label ID="updateFnamelbl" runat="server" Text="First Name :"></asp:Label>
         &nbsp; <asp:TextBox ID="firstnametxt0" runat="server" Height="19px"></asp:TextBox>
-        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="firstnametxt" Display="Dynamic" ErrorMessage="*" />
+        <%--- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator8" ControlToValidate="firstnametxt" Display="Dynamic" ErrorMessage="*" />--%>
         <br />
         <br />
         <asp:Label ID="updateLnamelbl" runat="server" Text="Last Name :"></asp:Label>
         &nbsp; <asp:TextBox ID="lastnametxt0" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="lastnametxt" Display="Dynamic" ErrorMessage="*" />
+        <%--- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="lastnametxt" Display="Dynamic" ErrorMessage="*" />--%>
         <br />
         <br />
         <asp:Label ID="updateEmaillbl" runat="server" Text="Email : "></asp:Label>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <asp:TextBox ID="emailtxt0" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="emailtxt" Display="Dynamic" ErrorMessage="*" />
+        <%--- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="emailtxt" Display="Dynamic" ErrorMessage="*" />--%>
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
         <br />
