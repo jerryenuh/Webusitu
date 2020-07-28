@@ -346,13 +346,17 @@ namespace Webusitu
             connection.Open();
             cmd.Connection = connection;
 
-            cmd.Parameters.AddWithValue("@startDay", SqlDbType.Date).Value = beginningDateTime.ToString("MMM dd,yyyy");
+            cmd.Parameters.AddWithValue("@SD", SqlDbType.Date).Value = beginningDateTime.ToString("MMM dd,yyyy");
+            System.Diagnostics.Debug.WriteLine(beginningDateTime);
             cmd.Parameters.AddWithValue("@DId", SqlDbType.Int).Value = Department;
-            cmd.Parameters.Add("@returnVal", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            var returnParameter = cmd.Parameters.Add("@returnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
             cmd.CommandType = CommandType.StoredProcedure;
 
             cmd.ExecuteNonQuery();
-            int counter = int.Parse(cmd.Parameters["@returnVal"].Value.ToString());
+            var result = returnParameter.Value;
+            int counter = int.Parse(result.ToString());
+            System.Diagnostics.Debug.WriteLine(counter);
             connection.Close();
 
             if(counter > 0)
