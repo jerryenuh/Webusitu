@@ -5,11 +5,13 @@
     </h2>
     <h2>Apply For Leave Down Below.</h2>
     <p>&nbsp;</p>
-    <script>
+    <script  type="text/javascript">
         function validate() {
-            confirm("Press Ok To Confirm?");lue;
+            confirm("Press Ok To Confirm?"); lue;
+            
         }
     </script>
+     
     
     <div>
         <label>ID</label>
@@ -48,6 +50,7 @@
             <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
             <WeekendDayStyle BackColor="#CCCCFF" />
         </asp:Calendar>
+        <asp:Label ID="errorlbl2" runat="server" ForeColor="Red"></asp:Label>
         <br />
 &nbsp;<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="SELECT * FROM [leaves]"></asp:SqlDataSource>
         <br />

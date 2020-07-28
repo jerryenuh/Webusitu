@@ -218,7 +218,7 @@ namespace Webusitu
                     DateTime endDate = new DateTime();
                     string cEndDate = enddatetxt.Text;
                     endDate = Convert.ToDateTime(cEndDate);
-                    if (errorlbl.Text == "You cannot apply for leave in this time period")
+                    if (errorlbl2.Text == "You cannot apply for leave in this time period")
                     {
 
                     }
@@ -275,6 +275,7 @@ namespace Webusitu
             }
 
             connection.Close();
+            Response.AddHeader("Refresh", "3");
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
@@ -361,11 +362,11 @@ namespace Webusitu
 
             if(counter > 0)
             {
-                errorlbl.Text = "You cannot apply for leave in this time period";
+                errorlbl2.Text = "You cannot apply for leave in this time period";
             }
             else
             {
-                errorlbl.Text = "";
+                errorlbl2.Text = "";
             }
 
             
