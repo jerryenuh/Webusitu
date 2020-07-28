@@ -45,7 +45,7 @@ namespace Webusitu
                     break;
                 }
                 read.Close();
-                s
+                
 
                 using (cmd = new SqlCommand("spInsEmployee", connection))
                 {
@@ -86,6 +86,11 @@ namespace Webusitu
         {
             cmd.Parameters.Clear();
             addEmployeeDiv.Visible = true;
+            int i=0;
+            if (i<=0)
+            {
+
+            }
             
         }
 
