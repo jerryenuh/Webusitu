@@ -95,6 +95,7 @@ namespace Webusitu
             addEmployeeDiv.Visible = false;
             updateDiv.Visible = true;
             searchButton.Visible = true;
+            int test;
         }
 
         protected void searchButton_Click(object sender, EventArgs e)
