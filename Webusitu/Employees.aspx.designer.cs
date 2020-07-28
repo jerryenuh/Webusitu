@@ -231,6 +231,15 @@ namespace Webusitu
         protected global::System.Web.UI.WebControls.TextBox emailtxt0;
 
         /// <summary>
+        /// DropDownList1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+
+        /// <summary>
         /// updatetelephonelbl control.
         /// </summary>
         /// <remarks>
@@ -258,6 +267,15 @@ namespace Webusitu
         protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator11;
 
         /// <summary>
+        /// leaveAmttxt control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox leaveAmttxt;
+
+        /// <summary>
         /// updateDepartmentlbl control.
         /// </summary>
         /// <remarks>
@@ -265,15 +283,6 @@ namespace Webusitu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label updateDepartmentlbl;
-
-        /// <summary>
-        /// departmentDD0 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList departmentDD0;
 
         /// <summary>
         /// SqlDataSource2 control.

@@ -14,6 +14,7 @@ namespace Webusitu
 {
     public partial class WebForm1 : System.Web.UI.Page
     {
+        
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
         SqlCommand cmd = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
@@ -30,11 +31,11 @@ namespace Webusitu
         {
 
             try
-            {   
-            connection.Open();
-            cmd.Connection = connection;
+            {
+                connection.Open();
+                cmd.Connection = connection;
 
-                 int DBId=0;
+                int DBId = 0;
                 cmd.Parameters.Clear();
                 cmd.CommandText = "select Id from[Department] where Name = @Name";
                 cmd.Parameters.AddWithValue("@Name", departmentDD.SelectedItem.Text);
@@ -51,7 +52,6 @@ namespace Webusitu
                 {
                     //connection setup and opening
                     connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
-                    connection.Open();
                     SqlDataAdapter adapter = new SqlDataAdapter();
                     //Code to send things to DB
                     long empid = Convert.ToInt32(IDtxt.Text);
@@ -63,7 +63,8 @@ namespace Webusitu
                     cmd.Parameters.AddWithValue("@Email", SqlDbType.NChar).Value = emailtxt.Text;
                     cmd.Parameters.AddWithValue("@Telephone", SqlDbType.Int).Value = telephone;
                     cmd.Parameters.AddWithValue("@DepartmentID", SqlDbType.Int).Value = DBId;
-                    
+                    connection.Open();
+
                     cmd.CommandType = CommandType.StoredProcedure;
                     //connection.Open();
                     cmd.ExecuteNonQuery();
@@ -76,8 +77,8 @@ namespace Webusitu
             }
             catch (Exception)
             {
-              errorlbl.Text = "There was an error contact admin for assistance";
-                
+                errorlbl.Text = "There was an error contact admin for assistance";
+
 
             }
         }
@@ -86,7 +87,7 @@ namespace Webusitu
         {
             cmd.Parameters.Clear();
             addEmployeeDiv.Visible = true;
-            
+
         }
 
         protected void updateBtn_Click(object sender, EventArgs e)
@@ -102,7 +103,7 @@ namespace Webusitu
             cmd.Connection = connection;
             cmd.CommandText = "select * from [dbo].[employee]";
             SqlDataReader rd = cmd.ExecuteReader();
-            
+
             string Fname = "";
 
             while (rd.Read())
@@ -112,16 +113,24 @@ namespace Webusitu
                     updateDiv.Visible = true;
                     updateDiv1.Visible = true;
                     errorlbl.Visible = true;
- 
+                    errorlbl.Text = "";
+
+                    firstnametxt0.Text = " " + rd.GetValue(1).ToString();
+                    lastnametxt0.Text = " " + rd.GetValue(2).ToString();
+                    emailtxt0.Text = " " + rd.GetValue(3).ToString();
+                    telephonetxt0.Text = " " + rd.GetValue(4).ToString();
+                    leaveAmttxt.Text = " " + rd.GetValue(5).ToString();
+                    break;
+
                     Fname = "" + rd.GetValue(1).ToString() + " " + rd.GetValue(2).ToString();
-                    
+
                     errorlbl.Text = "You Selected " + Fname;
                     break;
                 }
                 else
                 {
                     errorlbl.Text = "The Id you have entered does not exist so please try again";
-                    
+
                 }
 
             }
@@ -131,7 +140,39 @@ namespace Webusitu
 
         protected void updateEmpbtn_Click(object sender, EventArgs e)
         {
-            
+
+        }
+        protected void txtID_TextChanged(object sender, EventArgs e)
+        {
+            cmd.Connection = connection;
+            cmd.CommandText = "select * from [dbo].[employee]";
+            SqlDataReader rd = cmd.ExecuteReader();
+   
+            while (rd.Read())
+            {
+                if (rd[0].ToString() == IDtxt.Text)
+                {
+                    
+                    errorlbl.Text = "";
+                    
+                    firstnametxt0.Text = " " + rd.GetValue(1).ToString();
+                    lastnametxt0.Text=" " + rd.GetValue(2).ToString();
+                    emailtxt0.Text = " " + rd.GetValue(3).ToString();
+                    telephonetxt0.Text = " " + rd.GetValue(4).ToString();
+                    leaveAmttxt.Text = " " + rd.GetValue(5).ToString();
+                    break;
+                }
+                else
+                {
+                    errorlbl.Text = "The Id you have entered does not exist so please try again";
+                    firstnametxt.Text = "";
+                    lastnametxt.Text = " ";
+                    emailtxt.Text = " ";
+                    telephonetxt.Text = " ";
+                }
+
+            }
+            rd.Close();
         }
     }
-    }
+ }
