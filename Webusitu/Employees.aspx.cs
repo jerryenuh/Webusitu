@@ -160,6 +160,7 @@ namespace Webusitu
                     emailtxt0.Text = " " + rd.GetValue(3).ToString();
                     telephonetxt0.Text = " " + rd.GetValue(4).ToString();
                     leaveAmttxt.Text = " " + rd.GetValue(5).ToString();
+                    departmentDD.SelectedItem.Text = " htfdhgg";
                     break;
                 }
                 else
