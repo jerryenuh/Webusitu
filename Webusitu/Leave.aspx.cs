@@ -273,7 +273,7 @@ namespace Webusitu
                 datediv.Visible = false;
                 //submitdiv.Visible = false;
             }
-            s
+            
             connection.Close();
             Response.AddHeader("Refresh", "3");
         }

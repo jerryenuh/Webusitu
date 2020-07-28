@@ -95,7 +95,7 @@ namespace Webusitu
             addEmployeeDiv.Visible = false;
             updateDiv.Visible = true;
             searchButton.Visible = true;
-            int test;
+            
         }
 
         protected void searchButton_Click(object sender, EventArgs e)
@@ -104,7 +104,7 @@ namespace Webusitu
             cmd.Connection = connection;
             cmd.CommandText = "select * from [dbo].[employee]";
             SqlDataReader rd = cmd.ExecuteReader();
-
+            
             string Fname = "";
 
             while (rd.Read())
@@ -120,12 +120,14 @@ namespace Webusitu
                     lastnametxt0.Text = " " + rd.GetValue(2).ToString();
                     emailtxt0.Text = " " + rd.GetValue(3).ToString();
                     telephonetxt0.Text = " " + rd.GetValue(4).ToString();
-                    leaveAmttxt.Text = " " + rd.GetValue(5).ToString();
-                    break;
+                    leaveAmttxt.Text = " " + rd.GetValue(6).ToString();
+                    string id = rd.GetValue(5).ToString();
+                    updateDropDown.ClearSelection();
+                    updateDropDown.SelectedValue = id;
 
-                    Fname = "" + rd.GetValue(1).ToString() + " " + rd.GetValue(2).ToString();
-
+                    //Fname = "" + rd.GetValue(1).ToString() + " " + rd.GetValue(2).ToString();
                     errorlbl.Text = "You Selected " + Fname;
+                    
                     break;
                 }
                 else
