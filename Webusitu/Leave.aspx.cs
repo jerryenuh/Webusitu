@@ -13,6 +13,7 @@ using FluentDateTime;
 
 namespace Webusitu
 {
+
     public partial class Contact : Page
     {
         SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
@@ -217,6 +218,12 @@ namespace Webusitu
                     DateTime endDate = new DateTime();
                     string cEndDate = enddatetxt.Text;
                     endDate = Convert.ToDateTime(cEndDate);
+                    if (errorlbl.Text == "You cannot apply for leave in this time period")
+                    {
+
+                    }
+                    else
+                    {
                         cmd = new SqlCommand("spFindUserID", connection);
                         //cmd = new SqlCommand("calculateDays", connection);
                         SqlDataAdapter adapter = new SqlDataAdapter();
@@ -226,36 +233,38 @@ namespace Webusitu
                         cmd.Connection = connection;
                         cmd.Parameters.AddWithValue("@empId", SqlDbType.VarChar).Value = txtID.Text;
                         cmd.Parameters.AddWithValue("@lastDays", SqlDbType.Int).Value = lastdays;
-                    cmd.Parameters.AddWithValue("@startDay", SqlDbType.Date).Value = startDate.ToString("MMM dd,yyyy");
-                    cmd.Parameters.AddWithValue("@endDay", SqlDbType.Date).Value = endDate.ToString("MMM dd,yyyy");
+                        cmd.Parameters.AddWithValue("@startDay", SqlDbType.Date).Value = startDate.ToString("MMM dd,yyyy");
+                        cmd.Parameters.AddWithValue("@endDay", SqlDbType.Date).Value = endDate.ToString("MMM dd,yyyy");
                         cmd.Parameters.AddWithValue("@DepartmentID", SqlDbType.VarChar).Value = Department;
-                    //cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
-                    //daysRemain--;
-                    calDRamains = daysRemain - lastdays;
+                        //cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = 20;
+                        //daysRemain--;
+                        calDRamains = daysRemain - lastdays;
                         testlbl.Text = "You have " + calDRamains.ToString() + " days remaining";
 
-                    //adapter = new SqlDataAdapter("select id from [employee] id =" + empid + "", connection);
+                        //adapter = new SqlDataAdapter("select id from [employee] id =" + empid + "", connection);
 
 
-                    cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                        
+
                         cmd.ExecuteNonQuery();
-                        
+
                         connection.Close();
                     }
-                    else if (calDRamains == 0)
-                    {
-                        
-                        testlbl.Text = "You have no days left to use";
-                    }
-                    else
-                    {
-                        testlbl.Text = "You have went over the amount of days you have remaining. You have" + daysRemain++ + "days.";
-                    }
+                    
+                }
+                else if (calDRamains == 0)
+                {
 
-                
-                
+                    testlbl.Text = "You have no days left to use";
+                }
+                else
+                {
+                    testlbl.Text = "You have went over the amount of days you have remaining. You have" + daysRemain++ + "days.";
+                }
+
+
+
             }
             else
             {
@@ -315,16 +324,52 @@ namespace Webusitu
                 }
             
             newDate = weekendCheck(newDate);
+            string Department = "";
+            cmd.CommandText = "select DepartmentID from[employee] where Id = @Id";
+            cmd.Parameters.AddWithValue("@Id", txtID.Text);
+            SqlDataReader read = cmd.ExecuteReader();
+            while (read.Read())
+            {
+                Department = read.GetValue(0).ToString();
+                break;
+                //System.Diagnostics.Debug.WriteLine(daysRemain);
 
+            }
+            read.Close();
+
+            string beginningofall = calendar.SelectedDate.ToShortDateString();
+            DateTime beginningDateTime = Convert.ToDateTime(beginningofall);
+            cmd = new SqlCommand("spDateChek", connection);
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
+
+            connection.Open();
             cmd.Connection = connection;
 
-            cmd.CommandText = "select startDay, endDay from [dbo].[leaves]";
-            SqlDataReader rd = cmd.ExecuteReader();
+            cmd.Parameters.AddWithValue("@startDay", SqlDbType.Date).Value = beginningDateTime.ToString("MMM dd,yyyy");
+            cmd.Parameters.AddWithValue("@DId", SqlDbType.Int).Value = Department;
+            cmd.Parameters.Add("@returnVal", SqlDbType.Int).Direction = ParameterDirection.ReturnValue;
+            cmd.CommandType = CommandType.StoredProcedure;
 
-            while (rd.Read())
+            cmd.ExecuteNonQuery();
+            int counter = int.Parse(cmd.Parameters["@returnVal"].Value.ToString());
+            connection.Close();
+
+            if(counter > 0)
+            {
+                errorlbl.Text = "You cannot apply for leave in this time period";
+            }
+            else
+            {
+                errorlbl.Text = "";
+            }
+
+            
+
+            /*while (rd.Read())
             {
                 string startDay =rd[0].ToString();
-                string beginningofall = calendar.SelectedDate.ToShortDateString();
+                
                 DateTime beginningDateTime = Convert.ToDateTime(beginningofall);
                 DateTime startDayy = Convert.ToDateTime(startDay);
                 string endDay = rd[1].ToString();
@@ -336,10 +381,10 @@ namespace Webusitu
                 }
 
             }
-            rd.Close();
-            
+            rd.Close();*/
 
-            
+
+
         }
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
