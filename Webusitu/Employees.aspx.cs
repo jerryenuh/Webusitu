@@ -143,7 +143,32 @@ namespace Webusitu
 
         protected void updateEmpbtn_Click(object sender, EventArgs e)
         {
+            using (cmd = new SqlCommand("spUpEmployee", connection))
+            {
+                //connection setup and opening
+                connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
+                SqlDataAdapter adapter = new SqlDataAdapter();
+                //Code to send things to DB
+                //long empid = Convert.ToInt32(IDtxt.Text);
+                long telephone = Convert.ToInt64(telephonetxt0.Text);
+                cmd = new SqlCommand("spUpEmployee", connection);
+                cmd.Parameters.AddWithValue("@Id", SqlDbType.VarChar).Value = updateIDtxt.Text;
+                cmd.Parameters.AddWithValue("@FName", SqlDbType.NChar).Value = firstnametxt0.Text;
+                cmd.Parameters.AddWithValue("@LName", SqlDbType.NChar).Value = lastnametxt0.Text;
+                cmd.Parameters.AddWithValue("@Email", SqlDbType.NChar).Value = emailtxt0.Text;
+                cmd.Parameters.AddWithValue("@Telephone", SqlDbType.Int).Value = telephone;
+                cmd.Parameters.AddWithValue("@DepartmentID", SqlDbType.Int).Value = updateDropDown.SelectedItem.Text;
+                cmd.Parameters.AddWithValue("@daysRemain", SqlDbType.Int).Value = leaveAmttxt.Text;
+                connection.Open();
 
+                cmd.CommandType = CommandType.StoredProcedure;
+                //connection.Open();
+                cmd.ExecuteNonQuery();
+                //rd.Close();
+                connection.Close();
+
+                errorlbl.Text = "Successfully Updated";
+            }
         }
         protected void txtID_TextChanged(object sender, EventArgs e)
         {
