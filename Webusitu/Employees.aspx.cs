@@ -54,10 +54,10 @@ namespace Webusitu
                     connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
                     SqlDataAdapter adapter = new SqlDataAdapter();
                     //Code to send things to DB
-                    long empid = Convert.ToInt32(IDtxt.Text);
+                    
                     long telephone = Convert.ToInt64(telephonetxt.Text);
                     cmd = new SqlCommand("spInsEmployee", connection);
-                    cmd.Parameters.AddWithValue("ID", SqlDbType.Int).Value = empid;
+                    cmd.Parameters.AddWithValue("ID", SqlDbType.NChar).Value = IDtxt.Text;
                     cmd.Parameters.AddWithValue("@FName", SqlDbType.NChar).Value = firstnametxt.Text;
                     cmd.Parameters.AddWithValue("@LName", SqlDbType.NChar).Value = lastnametxt.Text;
                     cmd.Parameters.AddWithValue("@Email", SqlDbType.NChar).Value = emailtxt.Text;
@@ -81,6 +81,8 @@ namespace Webusitu
 
 
             }
+            addEmployeeDiv.Visible = true;
+            Response.AddHeader("Refresh", "2");
         }
 
         protected void addEmployeeBtn_Click(object sender, EventArgs e)
