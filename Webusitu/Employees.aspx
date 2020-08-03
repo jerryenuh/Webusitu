@@ -23,7 +23,7 @@
         <%--- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator9" ControlToValidate="lastnametxt" Display="Dynamic" ErrorMessage="*" />--%>
         <br />
         <br />
-        Last Name :&nbsp; <asp:TextBox ID="lastnametxt" runat="server" Height="16px"></asp:TextBox>
+        Last Name :&nbsp; <asp:TextBox ID="lastnametxt" runat="server" Height="22px"></asp:TextBox>
         <%--- <asp:RequiredFieldValidator runat="server" ID="RequiredFieldValidator10" ControlToValidate="emailtxt" Display="Dynamic" ErrorMessage="*" />--%>
         <br />
         <br />
