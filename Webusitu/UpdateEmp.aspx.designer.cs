@@ -15,15 +15,6 @@ namespace Webusitu
     {
 
         /// <summary>
-        /// errorlbl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label errorlbl;
-
-        /// <summary>
         /// updateDiv control.
         /// </summary>
         /// <remarks>
@@ -49,6 +40,15 @@ namespace Webusitu
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox updateIDtxt;
+
+        /// <summary>
+        /// errorlbl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label errorlbl;
 
         /// <summary>
         /// updateDiv1 control.

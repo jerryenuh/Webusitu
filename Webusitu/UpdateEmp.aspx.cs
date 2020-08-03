@@ -56,6 +56,7 @@ namespace Webusitu
                     errorlbl.Visible = true;
                     errorlbl.Text = "";
 
+                    Fname = "" + rd.GetValue(1).ToString();
                     firstnametxt0.Text = "" + rd.GetValue(1).ToString();
                     lastnametxt0.Text = "" + rd.GetValue(2).ToString();
                     emailtxt0.Text = "" + rd.GetValue(3).ToString();
