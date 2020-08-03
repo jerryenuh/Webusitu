@@ -6,8 +6,8 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><%: Page.Title %> - My ASP.NET Application</title>
-
+    <title><%: Page.Title %> - Leave Application System</title>
+    
     <asp:PlaceHolder runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:PlaceHolder>
@@ -51,7 +51,13 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li><a runat="server" href="~/Leave">Leave Application</a></li>
-                        <li><a runat="server" href="~/Employees">Employees</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employees<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="Employees.aspx">Add Employees</a></li>
+                                <li><a href="UpdateEmp.aspx">Edit/Update Employees</a></li>
+                            </ul>
+                            </li>
                         <li><a runat="server" href="~/Reports">Reports</a></li>
                         <li><a runat="server" href="~/Holidays">Holidays</a></li>
                     </ul>

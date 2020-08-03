@@ -47,7 +47,7 @@
                         <asp:BoundField DataField="RecId" HeaderText="RecId" InsertVisible="False" ReadOnly="True" SortExpression="RecId" />
                         <asp:BoundField DataField="empId" HeaderText="empId" SortExpression="empId" />
                         <asp:BoundField DataField="DepartmentID" HeaderText="DepartmentID" SortExpression="DepartmentID" />
-                        <asp:BoundField DataField="lastDays" HeaderText="lastDays" SortExpression="lastDays" />
+                        <asp:BoundField DataField="lastDays" HeaderText="Days Taken" SortExpression="lastDays" />
                         <asp:BoundField DataField="startDay" HeaderText="startDay" SortExpression="startDay" />
                         <asp:BoundField DataField="endDay" HeaderText="endDay" SortExpression="endDay" />
                     </Columns>
@@ -62,7 +62,7 @@
                     <SortedDescendingHeaderStyle BackColor="#93451F" />
                 </asp:GridView>
                 
-                <asp:SqlDataSource ID="Leaves" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="SELECT * FROM [leaves] WHERE ([DepartmentID] = @DepartmentID)">
+                <asp:SqlDataSource ID="Leaves" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="SELECT [RecId],[empId],[DepartmentID],[lastDays] ,convert(varChar,[startDay],106) AS [startDay] ,convert(varChar,[endDay],106) AS [endDay] from [leaves] WHERE ([DepartmentID] = @DepartmentID)">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="DepID" DefaultValue="101" Name="DepartmentID" PropertyName="Text" Type="String" />
                     </SelectParameters>

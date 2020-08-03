@@ -15,30 +15,34 @@
     
     <div>
         <label>ID</label>
-        <asp:TextBox ID="txtID" runat="server" />
+        <asp:TextBox CssClass="form-control" ID="txtID" runat="server" BorderStyle="Solid" Width="152px" />
         <asp:Label ID="errorlbl" runat="server" Text="" BackColor="White" Font-Bold="True" Font-Italic="True" ForeColor="Red"></asp:Label>
         
         <br />
-        <asp:Button ID="idsubmitbtn" runat="server" OnClick="idsubmitbtn_Click" Text="Search" />
+        <asp:Button CssClass="btn btn-info" ID="idsubmitbtn" runat="server" OnClick="idsubmitbtn_Click" Text="Search" ForeColor="#333333" />
         <br />
     </div>
     <div id="leavediv" runat="server">
         <label>Leave Day/s amount</label>
-        <asp:TextBox ID="txtDays" runat="server" AutoPostBack="True" OnTextChanged="txtDays_TextChanged" >0</asp:TextBox>
+        <asp:TextBox CssClass="form-control" ID="txtDays" runat="server" AutoPostBack="True" OnTextChanged="txtDays_TextChanged" >0</asp:TextBox>
         
-        <br />
         <br />
     </div>
     <div id="datediv" runat="server">
         <label>Start Date</label>&nbsp;
-        <asp:TextBox ID="startdate" runat="server" Width="129px" OnTextChanged="startdate_TextChanged" placeholder ="mm/dd/yyyy"></asp:TextBox>
+        <asp:TextBox CssClass="form-control" ID="startdate" runat="server" Width="129px" OnTextChanged="startdate_TextChanged" placeholder ="mm/dd/yyyy"></asp:TextBox>
 
-        <label>
-        <asp:ImageButton ID="ImageButton1" runat="server" OnClick="ImageButton1_Click" Width="22px" ImageUrl="~/Content/Calendar.png" />
-        </label>
+        <span>
+
+        
+        <asp:ImageButton  ID="ImageButton1" runat="server" OnClick="ImageButton1_Click" Width="22px" ImageUrl="~/Content/Calendar.png" />
+        <br />
+        <br />
+        
         
 
-        <label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; End Date</label>&nbsp;
+        </span>
+        <label>End Date</label>&nbsp;
         <asp:TextBox ID="enddatetxt" runat="server" ReadOnly="True"></asp:TextBox>
         <asp:Calendar ID="calendar" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender" OnSelectionChanged="Calendar1_SelectionChanged">
             <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
@@ -58,7 +62,7 @@
 
     </div>
     <div id="submitdiv" runat="server">
-        <asp:Button ID="btnSubmit" runat="server" Text="Submit Info" OnClick="btnSubmit_Click" OnClientClick="validate();"/>
+        <asp:Button CssClass="btn btn-info" ID="btnSubmit" runat="server" Text="Submit Info" OnClick="btnSubmit_Click" OnClientClick="validate();" ForeColor="Black"/>
         <asp:Label ID="testlbl" runat="server"></asp:Label>
     </div>
    <!-- <div class="message">
