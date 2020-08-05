@@ -24,7 +24,8 @@
                 <%--Framework Scripts--%>
                 <asp:ScriptReference Name="MsAjaxBundle" />
                 <asp:ScriptReference Name="jquery" />
-                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="bootstrap"/>
+               
                 <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
                 <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
                 <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
@@ -38,7 +39,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-inverse navbar-fixed-top">
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top bg-dark">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -46,10 +47,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" runat="server" href="~/Leave"><span><img alt="Logo" src="Content/HEART-NSTA-Trust-Logo.png" height="30"</span>   Leave Application System</a>
+                    <a class="navbar-brand" runat="server" href="~/Leave"><span><img alt="Logo" src="Content/HEART-NSTA-Trust-Logo.png" height="30" /></span>   Leave Application System</a>
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
+                <div class="navbar-collapse collapse" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav navbar-center">
                         <li><a runat="server" href="~/Leave">Leave Application</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Employees<b class="caret"></b></a>
@@ -63,7 +64,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </nav>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>
