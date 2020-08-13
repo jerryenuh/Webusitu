@@ -35,8 +35,10 @@ namespace Webusitu
 
                 int DBId = 0;
                 cmd.Parameters.Clear();
-                cmd.CommandText = "select Id from[Department] where Name = @Name";
-                cmd.Parameters.AddWithValue("@Name", departmentDD.SelectedItem.Text);
+                cmd = new SqlCommand("spFindDepIDbyName", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                 cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = departmentDD.SelectedItem.ToString();
+          
                 SqlDataReader read = cmd.ExecuteReader();
                 while (read.Read())
                 {

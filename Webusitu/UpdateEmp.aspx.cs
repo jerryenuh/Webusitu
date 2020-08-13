@@ -41,7 +41,8 @@ namespace Webusitu
         {
             connection.Open();
             cmd.Connection = connection;
-            cmd.CommandText = "select * from [dbo].[employee]";
+            cmd = new SqlCommand("spSelectAllemployee", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader rd = cmd.ExecuteReader();
 
             string Fname = "";

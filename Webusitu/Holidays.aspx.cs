@@ -75,7 +75,8 @@ namespace Webusitu
                         //string date = holidaytxt2.Text;
                         cmd.Connection = connection;
                         connection.Open();
-                        cmd.CommandText = "insert into holidays(days) VALUES (@date)";
+                        cmd = new SqlCommand("spInsertintoHolidays", connection);
+                        cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@date", (gvHoliday.FooterRow.FindControl("txtDaysFooter") as TextBox).Text.Trim());
                         cmd.ExecuteNonQuery();
                         PopulateGridView();
@@ -111,7 +112,8 @@ namespace Webusitu
                     
                     cmd.Connection = connection;
                     connection.Open();
-                    cmd.CommandText = "UPDATE holidays SET days = @date WHERE Id = @Id";
+                    cmd = new SqlCommand("spUpdateHolidaysById", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@date", (gvHoliday.Rows[e.RowIndex].FindControl("txtDays") as TextBox).Text.Trim());
                     cmd.Parameters.AddWithValue("@Id", Convert.ToInt32(gvHoliday.DataKeys[e.RowIndex].Value.ToString()));
 
@@ -139,7 +141,8 @@ namespace Webusitu
                     System.Diagnostics.Debug.WriteLine(id);
                     cmd.Connection = connection;
                     connection.Open();
-                    cmd.CommandText = "DELETE FROM holidays WHERE Id = @Id";
+                    cmd = new SqlCommand("spDeleteHolidaysById", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@Id", Convert.ToInt32(gvHoliday.DataKeys[e.RowIndex].Value.ToString()));
 
                     cmd.ExecuteNonQuery();

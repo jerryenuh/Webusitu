@@ -30,8 +30,12 @@ namespace Webusitu
         public DateTime weekendCheck(DateTime sDate)
         {
             DateTime eDate = new DateTime();
-
+                
             eDate = sDate;
+            System.Diagnostics.Debug.WriteLine("Hey");
+            System.Diagnostics.Debug.WriteLine(sDate.Month);
+            System.Diagnostics.Debug.WriteLine(eDate.Month);
+            System.Diagnostics.Debug.WriteLine("Hey");
 
             // make sure it is not a saturday or Sunday
             // if it is add another day
@@ -53,7 +57,9 @@ namespace Webusitu
         private bool isHoliday(DateTime eDate)
         {
             bool status = false;   // not holiday is default
-
+            System.Diagnostics.Debug.WriteLine("Hola");
+            System.Diagnostics.Debug.WriteLine(eDate.Month);
+            System.Diagnostics.Debug.WriteLine("Hola");
             try
             {
                 // Always holidays are Jan 1, Dec 25, 26 and Aug 1,6
@@ -67,7 +73,8 @@ namespace Webusitu
                 else
                 {
                     cmd.Connection = connection;
-                    cmd.CommandText = "select * from [dbo].[holidays]";
+                    cmd = new SqlCommand("spSelectAllHolidays", connection);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataReader rd = cmd.ExecuteReader();
                     string compDate = "" + eDate.Month + "/" + eDate.Day + "/" + eDate.Year;
                     System.Diagnostics.Debug.WriteLine(eDate);
@@ -118,7 +125,8 @@ namespace Webusitu
         protected void idsubmitbtn_Click(object sender, EventArgs e)
         {
             cmd.Connection = connection;
-            cmd.CommandText = "select * from [dbo].[employee]";
+            cmd = new SqlCommand("spSelectAllemployee", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader rd = cmd.ExecuteReader();
             string daysRemain ="";
             string Fname= "";
@@ -156,9 +164,9 @@ namespace Webusitu
             
             cmd.Connection = connection;
             
-            cmd.CommandText = "select * from [dbo].[employee]";
+            cmd = new SqlCommand("spSelectAllemployee", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader rd = cmd.ExecuteReader();
-            
             while (rd.Read())
             {
                 if (rd[0].ToString() == txtID.Text)
@@ -179,10 +187,10 @@ namespace Webusitu
                 int dayamount= Convert.ToInt32(txtDays.Text);
                 string Department = "";
 
-                cmd.CommandText = "select daysRemain from[employee] where Id = @Id";
-                
-                //SqlCommand com = new SqlCommand("select daysRemain from [employee] where Id =@Id", connection);
-                cmd.Parameters.AddWithValue("@Id", txtID.Text);
+                cmd = new SqlCommand("spDaysRemainFromEmpId", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.Add("@Id", SqlDbType.VarChar).Value = txtID.Text;
                 SqlDataReader read = cmd.ExecuteReader();
                 int daysRemain=0;
                 int calDRamains =0;
@@ -197,9 +205,10 @@ namespace Webusitu
                 }
                 read.Close();
                 cmd.Parameters.Clear();
-             //Reading the Department from employee table
-                cmd.CommandText = "select DepartmentID from[employee] where Id = @Id";
-                cmd.Parameters.AddWithValue("@Id", txtID.Text);
+                //Reading the Department from employee table
+                cmd = new SqlCommand("spFindDepIdfromId", connection);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", SqlDbType.VarChar).Value = txtID.Text;
                 read = cmd.ExecuteReader();
                 while (read.Read())
                 {
@@ -310,6 +319,8 @@ namespace Webusitu
              * when it was suppose to be
              *      newDate = weekendCheck(newDate);
              */
+            newDate = weekendCheck(newDate);
+
             if (txtDays.Text==String.Empty)
                 {
                     enddatetxt.Text = " ";
@@ -326,8 +337,9 @@ namespace Webusitu
             
             newDate = weekendCheck(newDate);
             string Department = "";
-            cmd.CommandText = "select DepartmentID from[employee] where Id = @Id";
-            cmd.Parameters.AddWithValue("@Id", txtID.Text);
+            cmd = new SqlCommand("spFindDepIdfromId", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Id", SqlDbType.VarChar).Value = txtID.Text;
             SqlDataReader read = cmd.ExecuteReader();
             while (read.Read())
             {
@@ -414,9 +426,10 @@ namespace Webusitu
                 //calendar.SelectedDate.AddDays(dayamount);
                 //check for weekends
                 DateTime newDate = new DateTime();
-                newDate = Convert.ToDateTime(calendar.SelectedDate);
-                newDate = weekendCheck(newDate); 
+                //newDate = Convert.ToDateTime(calendar.SelectedDate);
                 newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
+                newDate = weekendCheck(newDate); 
+                //newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
                 if (txtDays.Text==String.Empty)
                 {
                     enddatetxt.Text = " ";

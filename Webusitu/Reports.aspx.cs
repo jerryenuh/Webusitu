@@ -23,25 +23,30 @@ namespace Webusitu
 
         protected void DepartmentDD_SelectedIndexChanged(object sender, EventArgs e)
         {
-            connection.Open();
-            cmd.Connection = connection;
-            Console.WriteLine("Work");
+
             string DBId = "";
             cmd.Parameters.Clear();
-            cmd.CommandText = "select Id from[Department] where Name = @Name";
-            cmd.Parameters.AddWithValue("@Name", DepartmentDD.SelectedValue);
-            System.Diagnostics.Debug.WriteLine(DepartmentDD.SelectedValue);
+            cmd = new SqlCommand("spFindDepIDbyName", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            
+            //System.Diagnostics.Debug.WriteLine(DepartmentDD.SelectedValue.ToString());
+
+            cmd.Parameters.Add("@Name", SqlDbType.VarChar).Value = DepartmentDD.SelectedValue.ToString();
+            connection.Open();
+            //cmd.Connection = connection;
             SqlDataReader read = cmd.ExecuteReader();
             while (read.Read())
             {
                 DBId = read.GetValue(0).ToString();
-                System.Diagnostics.Debug.WriteLine(DBId);
+                System.Diagnostics.Debug.WriteLine(DepartmentDD.SelectedValue.ToString());
                 break;
             }
             read.Close();
 
             DepID.Text =  DBId;
-
+            
+            cmd.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }
