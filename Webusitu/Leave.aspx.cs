@@ -32,11 +32,7 @@ namespace Webusitu
             DateTime eDate = new DateTime();
                 
             eDate = sDate;
-            System.Diagnostics.Debug.WriteLine("Hey");
-            System.Diagnostics.Debug.WriteLine(sDate.Month);
-            System.Diagnostics.Debug.WriteLine(eDate.Month);
-            System.Diagnostics.Debug.WriteLine("Hey");
-
+           
             // make sure it is not a saturday or Sunday
             // if it is add another day
             while (sDate.DayOfWeek == DayOfWeek.Saturday || sDate.DayOfWeek == DayOfWeek.Sunday || isHoliday(sDate) == true)
@@ -57,9 +53,7 @@ namespace Webusitu
         private bool isHoliday(DateTime eDate)
         {
             bool status = false;   // not holiday is default
-            System.Diagnostics.Debug.WriteLine("Hola");
-            System.Diagnostics.Debug.WriteLine(eDate.Month);
-            System.Diagnostics.Debug.WriteLine("Hola");
+           
             try
             {
                 // Always holidays are Jan 1, Dec 25, 26 and Aug 1,6
@@ -76,12 +70,13 @@ namespace Webusitu
                     cmd = new SqlCommand("spSelectAllHolidays", connection);
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataReader rd = cmd.ExecuteReader();
-                    string compDate = "" + eDate.Month + "/" + eDate.Day + "/" + eDate.Year;
+                    string compDate = "" + eDate.Month + "/" + eDate.Day + "/" + eDate.Year + " 12:00:00 AM";
                     System.Diagnostics.Debug.WriteLine(eDate);
+                    System.Diagnostics.Debug.WriteLine("compDate");
                     System.Diagnostics.Debug.WriteLine(compDate);
                     while (rd.Read())
                     {
-                        if (rd[0].ToString() == compDate)
+                        if (rd[1].ToString() == compDate)
                         {
                             status = true;
 
