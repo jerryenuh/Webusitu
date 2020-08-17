@@ -32,21 +32,24 @@ namespace Webusitu
             DateTime eDate = new DateTime();
                 
             eDate = sDate;
-           
+            
             // make sure it is not a saturday or Sunday
             // if it is add another day
-            while (sDate.DayOfWeek == DayOfWeek.Saturday || sDate.DayOfWeek == DayOfWeek.Sunday || isHoliday(sDate) == true)
+
+            do 
             {
 
-                sDate = sDate.AddDays(1);
+                
+                System.Diagnostics.Debug.WriteLine("Yo");
                 System.Diagnostics.Debug.WriteLine(sDate);
-               // return eDate;
-            }
-           
-                // More than one day so add days day by day and check each time for
-                // weekend. do recursively
+                sDate = sDate.AddBusinessDays(1);
+                // return eDate;
+            } while ((sDate.DayOfWeek == DayOfWeek.Saturday || sDate.DayOfWeek == DayOfWeek.Sunday || isHoliday(sDate) == true)) ;
 
-                return sDate;
+            // More than one day so add days day by day and check each time for
+            // weekend. do recursively
+            
+            return sDate;
             
         }
 
@@ -58,12 +61,17 @@ namespace Webusitu
             {
                 // Always holidays are Jan 1, Dec 25, 26 and Aug 1,6
                 if (eDate.Month == 1 && eDate.Day == 1)
+                {
                     status = true;
+                }
                 else if (eDate.Month == 12 && (eDate.Day == 25 || eDate.Day == 26))
+                {
                     status = true;
-
+                }
                 else if (eDate.Month == 8 && (eDate.Day == 1 || eDate.Day == 6))
+                {
                     status = true;
+                }
                 else
                 {
                     cmd.Connection = connection;
@@ -71,9 +79,9 @@ namespace Webusitu
                     cmd.CommandType = CommandType.StoredProcedure;
                     SqlDataReader rd = cmd.ExecuteReader();
                     string compDate = "" + eDate.Month + "/" + eDate.Day + "/" + eDate.Year + " 12:00:00 AM";
-                    System.Diagnostics.Debug.WriteLine(eDate);
-                    System.Diagnostics.Debug.WriteLine("compDate");
-                    System.Diagnostics.Debug.WriteLine(compDate);
+                    ///System.Diagnostics.Debug.WriteLine(eDate);
+                    //System.Diagnostics.Debug.WriteLine("compDate");
+                    //System.Diagnostics.Debug.WriteLine(compDate);
                     while (rd.Read())
                     {
                         if (rd[1].ToString() == compDate)
@@ -82,7 +90,7 @@ namespace Webusitu
 
                             break;
                         }
-                        System.Diagnostics.Debug.WriteLine(status);
+                        //System.Diagnostics.Debug.WriteLine(status);
                     }
                     rd.Close();
                 }
@@ -307,8 +315,8 @@ namespace Webusitu
 
             newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
             
-            System.Diagnostics.Debug.WriteLine(newDate);
-            System.Diagnostics.Debug.WriteLine(dayamount);
+            //System.Diagnostics.Debug.WriteLine(newDate);
+            //System.Diagnostics.Debug.WriteLine(dayamount);
             /* you orginally had
              *      weekendCheck(newDate);
              * when it was suppose to be
