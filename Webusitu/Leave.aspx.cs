@@ -32,7 +32,7 @@ namespace Webusitu
             DateTime eDate = new DateTime();
                 
             eDate = sDate;
-            
+            sDate = sDate.AddDays(-);
             // make sure it is not a saturday or Sunday
             // if it is add another day
 
