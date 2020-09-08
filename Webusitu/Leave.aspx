@@ -1,6 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Leave.aspx.cs" Inherits="Webusitu.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+     
     <h2><%: Title %>
     </h2>
     <h2>Apply For Leave Down Below.</h2>
@@ -15,11 +16,11 @@
     
     <div>
         <label>ID</label>
-        <asp:TextBox CssClass="form-control" ID="txtID" runat="server" BorderStyle="Solid" Width="152px" />
+        <asp:TextBox CssClass="form-control" ID="txtID" runat="server" AutoPostBack="True" BorderStyle="Solid" Width="152px" ReadOnly="True" />
         <asp:Label ID="errorlbl" runat="server" Text="" BackColor="White" Font-Bold="True" Font-Italic="True" ForeColor="Red"></asp:Label>
         
         <br />
-        <asp:Button CssClass="btn btn-info" ID="idsubmitbtn" runat="server" OnClick="idsubmitbtn_Click" Text="Search" ForeColor="#333333" />
+        <asp:Button CssClass="btn btn-info" ID="idsubmitbtn" runat="server" AutoPostBack="True" OnClick="idsubmitbtn_Click" Text="Search" ForeColor="#333333" />
         <br />
     </div>
     <div id="leavediv" runat="server">
@@ -37,13 +38,6 @@
         
         <asp:ImageButton  ID="ImageButton1" runat="server" OnClick="ImageButton1_Click" Width="22px" ImageUrl="~/Content/Calendar.png" />
         <br />
-        <br />
-        
-        
-
-        </span>
-        <label>End Date</label>&nbsp;
-        <asp:TextBox ID="enddatetxt" runat="server" ReadOnly="True"></asp:TextBox>
         <asp:Calendar ID="calendar" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender" OnSelectionChanged="Calendar1_SelectionChanged">
             <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
             <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
@@ -54,6 +48,13 @@
             <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
             <WeekendDayStyle BackColor="#CCCCFF" />
         </asp:Calendar>
+        <br />
+        
+        
+
+        </span>
+        <label>End Date</label>&nbsp;
+        <asp:TextBox ID="enddatetxt" runat="server" ReadOnly="True"></asp:TextBox>
         <asp:Label ID="errorlbl2" runat="server" ForeColor="Red"></asp:Label>
         <br />
 &nbsp;<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="SELECT * FROM [leaves]"></asp:SqlDataSource>

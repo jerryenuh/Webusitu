@@ -11,6 +11,22 @@ namespace Webusitu
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string role = Session["Role"].ToString();
+            System.Diagnostics.Debug.WriteLine(role);
+            if (String.Equals(role, "admin"))
+            {
+                adminReports.Visible = true;
+                adminHoliday.Visible = true;
+                dropdown.Visible = true;
+
+            }
+            else
+            {
+                adminReports.Visible = false;
+                adminHoliday.Visible = false;
+                dropdown.Visible = false;
+            }
+
 
         }
     }
