@@ -24,7 +24,7 @@ namespace Webusitu {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class DataSet2 : global::System.Data.DataSet {
         
-        private DataTable1DataTable tableDataTable1;
+        private spRVEmpListDataTable tablespRVEmpList;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -54,8 +54,8 @@ namespace Webusitu {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["DataTable1"] != null)) {
-                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
+                if ((ds.Tables["spRVEmpList"] != null)) {
+                    base.Tables.Add(new spRVEmpListDataTable(ds.Tables["spRVEmpList"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace Webusitu {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public DataTable1DataTable DataTable1 {
+        public spRVEmpListDataTable spRVEmpList {
             get {
-                return this.tableDataTable1;
+                return this.tablespRVEmpList;
             }
         }
         
@@ -152,8 +152,8 @@ namespace Webusitu {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["DataTable1"] != null)) {
-                    base.Tables.Add(new DataTable1DataTable(ds.Tables["DataTable1"]));
+                if ((ds.Tables["spRVEmpList"] != null)) {
+                    base.Tables.Add(new spRVEmpListDataTable(ds.Tables["spRVEmpList"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace Webusitu {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableDataTable1 = ((DataTable1DataTable)(base.Tables["DataTable1"]));
+            this.tablespRVEmpList = ((spRVEmpListDataTable)(base.Tables["spRVEmpList"]));
             if ((initTable == true)) {
-                if ((this.tableDataTable1 != null)) {
-                    this.tableDataTable1.InitVars();
+                if ((this.tablespRVEmpList != null)) {
+                    this.tablespRVEmpList.InitVars();
                 }
             }
         }
@@ -204,13 +204,13 @@ namespace Webusitu {
             this.Namespace = "http://tempuri.org/DataSet2.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableDataTable1 = new DataTable1DataTable();
-            base.Tables.Add(this.tableDataTable1);
+            this.tablespRVEmpList = new spRVEmpListDataTable();
+            base.Tables.Add(this.tablespRVEmpList);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        private bool ShouldSerializeDataTable1() {
+        private bool ShouldSerializespRVEmpList() {
             return false;
         }
         
@@ -270,33 +270,33 @@ namespace Webusitu {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public delegate void DataTable1RowChangeEventHandler(object sender, DataTable1RowChangeEvent e);
+        public delegate void spRVEmpListRowChangeEventHandler(object sender, spRVEmpListRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class DataTable1DataTable : global::System.Data.TypedTableBase<DataTable1Row> {
+        public partial class spRVEmpListDataTable : global::System.Data.TypedTableBase<spRVEmpListRow> {
             
-            private global::System.Data.DataColumn columnempId;
+            private global::System.Data.DataColumn columnId;
             
             private global::System.Data.DataColumn columnFName;
             
             private global::System.Data.DataColumn columnLName;
             
-            private global::System.Data.DataColumn columnDepartment;
+            private global::System.Data.DataColumn columnEmail;
             
-            private global::System.Data.DataColumn columnstartDay;
+            private global::System.Data.DataColumn columnTelephone;
             
-            private global::System.Data.DataColumn columnendDay;
+            private global::System.Data.DataColumn columnDepartmentID;
             
             private global::System.Data.DataColumn columndaysRemain;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTable1DataTable() {
-                this.TableName = "DataTable1";
+            public spRVEmpListDataTable() {
+                this.TableName = "spRVEmpList";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -304,7 +304,7 @@ namespace Webusitu {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal DataTable1DataTable(global::System.Data.DataTable table) {
+            internal spRVEmpListDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -321,16 +321,16 @@ namespace Webusitu {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            protected DataTable1DataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected spRVEmpListDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn empIdColumn {
+            public global::System.Data.DataColumn IdColumn {
                 get {
-                    return this.columnempId;
+                    return this.columnId;
                 }
             }
             
@@ -352,25 +352,25 @@ namespace Webusitu {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn DepartmentColumn {
+            public global::System.Data.DataColumn EmailColumn {
                 get {
-                    return this.columnDepartment;
+                    return this.columnEmail;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn startDayColumn {
+            public global::System.Data.DataColumn TelephoneColumn {
                 get {
-                    return this.columnstartDay;
+                    return this.columnTelephone;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn endDayColumn {
+            public global::System.Data.DataColumn DepartmentIDColumn {
                 get {
-                    return this.columnendDay;
+                    return this.columnDepartmentID;
                 }
             }
             
@@ -393,51 +393,58 @@ namespace Webusitu {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTable1Row this[int index] {
+            public spRVEmpListRow this[int index] {
                 get {
-                    return ((DataTable1Row)(this.Rows[index]));
+                    return ((spRVEmpListRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowChanging;
+            public event spRVEmpListRowChangeEventHandler spRVEmpListRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowChanged;
+            public event spRVEmpListRowChangeEventHandler spRVEmpListRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowDeleting;
+            public event spRVEmpListRowChangeEventHandler spRVEmpListRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public event DataTable1RowChangeEventHandler DataTable1RowDeleted;
+            public event spRVEmpListRowChangeEventHandler spRVEmpListRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void AddDataTable1Row(DataTable1Row row) {
+            public void AddspRVEmpListRow(spRVEmpListRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTable1Row AddDataTable1Row(string empId, string FName, string LName, string Department, string startDay, string endDay, int daysRemain) {
-                DataTable1Row rowDataTable1Row = ((DataTable1Row)(this.NewRow()));
+            public spRVEmpListRow AddspRVEmpListRow(string Id, string FName, string LName, string Email, decimal Telephone, string DepartmentID, int daysRemain) {
+                spRVEmpListRow rowspRVEmpListRow = ((spRVEmpListRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        empId,
+                        Id,
                         FName,
                         LName,
-                        Department,
-                        startDay,
-                        endDay,
+                        Email,
+                        Telephone,
+                        DepartmentID,
                         daysRemain};
-                rowDataTable1Row.ItemArray = columnValuesArray;
-                this.Rows.Add(rowDataTable1Row);
-                return rowDataTable1Row;
+                rowspRVEmpListRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowspRVEmpListRow);
+                return rowspRVEmpListRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public spRVEmpListRow FindById(string Id) {
+                return ((spRVEmpListRow)(this.Rows.Find(new object[] {
+                            Id})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                DataTable1DataTable cln = ((DataTable1DataTable)(base.Clone()));
+                spRVEmpListDataTable cln = ((spRVEmpListDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -445,71 +452,74 @@ namespace Webusitu {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new DataTable1DataTable();
+                return new spRVEmpListDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
-                this.columnempId = base.Columns["empId"];
+                this.columnId = base.Columns["Id"];
                 this.columnFName = base.Columns["FName"];
                 this.columnLName = base.Columns["LName"];
-                this.columnDepartment = base.Columns["Department"];
-                this.columnstartDay = base.Columns["startDay"];
-                this.columnendDay = base.Columns["endDay"];
+                this.columnEmail = base.Columns["Email"];
+                this.columnTelephone = base.Columns["Telephone"];
+                this.columnDepartmentID = base.Columns["DepartmentID"];
                 this.columndaysRemain = base.Columns["daysRemain"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             private void InitClass() {
-                this.columnempId = new global::System.Data.DataColumn("empId", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnempId);
+                this.columnId = new global::System.Data.DataColumn("Id", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnId);
                 this.columnFName = new global::System.Data.DataColumn("FName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFName);
                 this.columnLName = new global::System.Data.DataColumn("LName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLName);
-                this.columnDepartment = new global::System.Data.DataColumn("Department", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnDepartment);
-                this.columnstartDay = new global::System.Data.DataColumn("startDay", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnstartDay);
-                this.columnendDay = new global::System.Data.DataColumn("endDay", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnendDay);
+                this.columnEmail = new global::System.Data.DataColumn("Email", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmail);
+                this.columnTelephone = new global::System.Data.DataColumn("Telephone", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTelephone);
+                this.columnDepartmentID = new global::System.Data.DataColumn("DepartmentID", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDepartmentID);
                 this.columndaysRemain = new global::System.Data.DataColumn("daysRemain", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndaysRemain);
-                this.columnempId.MaxLength = 5;
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnId}, true));
+                this.columnId.AllowDBNull = false;
+                this.columnId.Unique = true;
+                this.columnId.MaxLength = 5;
                 this.columnFName.MaxLength = 20;
                 this.columnLName.MaxLength = 20;
-                this.columnDepartment.MaxLength = 20;
-                this.columnstartDay.MaxLength = 10;
-                this.columnendDay.MaxLength = 10;
+                this.columnEmail.MaxLength = 30;
+                this.columnDepartmentID.MaxLength = 5;
                 this.columndaysRemain.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTable1Row NewDataTable1Row() {
-                return ((DataTable1Row)(this.NewRow()));
+            public spRVEmpListRow NewspRVEmpListRow() {
+                return ((spRVEmpListRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new DataTable1Row(builder);
+                return new spRVEmpListRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(DataTable1Row);
+                return typeof(spRVEmpListRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.DataTable1RowChanged != null)) {
-                    this.DataTable1RowChanged(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.spRVEmpListRowChanged != null)) {
+                    this.spRVEmpListRowChanged(this, new spRVEmpListRowChangeEvent(((spRVEmpListRow)(e.Row)), e.Action));
                 }
             }
             
@@ -517,8 +527,8 @@ namespace Webusitu {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.DataTable1RowChanging != null)) {
-                    this.DataTable1RowChanging(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.spRVEmpListRowChanging != null)) {
+                    this.spRVEmpListRowChanging(this, new spRVEmpListRowChangeEvent(((spRVEmpListRow)(e.Row)), e.Action));
                 }
             }
             
@@ -526,8 +536,8 @@ namespace Webusitu {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.DataTable1RowDeleted != null)) {
-                    this.DataTable1RowDeleted(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.spRVEmpListRowDeleted != null)) {
+                    this.spRVEmpListRowDeleted(this, new spRVEmpListRowChangeEvent(((spRVEmpListRow)(e.Row)), e.Action));
                 }
             }
             
@@ -535,14 +545,14 @@ namespace Webusitu {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.DataTable1RowDeleting != null)) {
-                    this.DataTable1RowDeleting(this, new DataTable1RowChangeEvent(((DataTable1Row)(e.Row)), e.Action));
+                if ((this.spRVEmpListRowDeleting != null)) {
+                    this.spRVEmpListRowDeleting(this, new spRVEmpListRowChangeEvent(((spRVEmpListRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void RemoveDataTable1Row(DataTable1Row row) {
+            public void RemovespRVEmpListRow(spRVEmpListRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -569,7 +579,7 @@ namespace Webusitu {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "DataTable1DataTable";
+                attribute2.FixedValue = "spRVEmpListDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -613,30 +623,25 @@ namespace Webusitu {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class DataTable1Row : global::System.Data.DataRow {
+        public partial class spRVEmpListRow : global::System.Data.DataRow {
             
-            private DataTable1DataTable tableDataTable1;
+            private spRVEmpListDataTable tablespRVEmpList;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            internal DataTable1Row(global::System.Data.DataRowBuilder rb) : 
+            internal spRVEmpListRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableDataTable1 = ((DataTable1DataTable)(this.Table));
+                this.tablespRVEmpList = ((spRVEmpListDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string empId {
+            public string Id {
                 get {
-                    try {
-                        return ((string)(this[this.tableDataTable1.empIdColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'empId\' in table \'DataTable1\' is DBNull.", e);
-                    }
+                    return ((string)(this[this.tablespRVEmpList.IdColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.empIdColumn] = value;
+                    this[this.tablespRVEmpList.IdColumn] = value;
                 }
             }
             
@@ -645,14 +650,14 @@ namespace Webusitu {
             public string FName {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.FNameColumn]));
+                        return ((string)(this[this.tablespRVEmpList.FNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'FName\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'FName\' in table \'spRVEmpList\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.FNameColumn] = value;
+                    this[this.tablespRVEmpList.FNameColumn] = value;
                 }
             }
             
@@ -661,62 +666,62 @@ namespace Webusitu {
             public string LName {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.LNameColumn]));
+                        return ((string)(this[this.tablespRVEmpList.LNameColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'LName\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'LName\' in table \'spRVEmpList\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.LNameColumn] = value;
+                    this[this.tablespRVEmpList.LNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string Department {
+            public string Email {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.DepartmentColumn]));
+                        return ((string)(this[this.tablespRVEmpList.EmailColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'Department\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Email\' in table \'spRVEmpList\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.DepartmentColumn] = value;
+                    this[this.tablespRVEmpList.EmailColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string startDay {
+            public decimal Telephone {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.startDayColumn]));
+                        return ((decimal)(this[this.tablespRVEmpList.TelephoneColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'startDay\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'Telephone\' in table \'spRVEmpList\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.startDayColumn] = value;
+                    this[this.tablespRVEmpList.TelephoneColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string endDay {
+            public string DepartmentID {
                 get {
                     try {
-                        return ((string)(this[this.tableDataTable1.endDayColumn]));
+                        return ((string)(this[this.tablespRVEmpList.DepartmentIDColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'endDay\' in table \'DataTable1\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'DepartmentID\' in table \'spRVEmpList\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tableDataTable1.endDayColumn] = value;
+                    this[this.tablespRVEmpList.DepartmentIDColumn] = value;
                 }
             }
             
@@ -724,83 +729,71 @@ namespace Webusitu {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public int daysRemain {
                 get {
-                    return ((int)(this[this.tableDataTable1.daysRemainColumn]));
+                    return ((int)(this[this.tablespRVEmpList.daysRemainColumn]));
                 }
                 set {
-                    this[this.tableDataTable1.daysRemainColumn] = value;
+                    this[this.tablespRVEmpList.daysRemainColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsempIdNull() {
-                return this.IsNull(this.tableDataTable1.empIdColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetempIdNull() {
-                this[this.tableDataTable1.empIdColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsFNameNull() {
-                return this.IsNull(this.tableDataTable1.FNameColumn);
+                return this.IsNull(this.tablespRVEmpList.FNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetFNameNull() {
-                this[this.tableDataTable1.FNameColumn] = global::System.Convert.DBNull;
+                this[this.tablespRVEmpList.FNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public bool IsLNameNull() {
-                return this.IsNull(this.tableDataTable1.LNameColumn);
+                return this.IsNull(this.tablespRVEmpList.LNameColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public void SetLNameNull() {
-                this[this.tableDataTable1.LNameColumn] = global::System.Convert.DBNull;
+                this[this.tablespRVEmpList.LNameColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsDepartmentNull() {
-                return this.IsNull(this.tableDataTable1.DepartmentColumn);
+            public bool IsEmailNull() {
+                return this.IsNull(this.tablespRVEmpList.EmailColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetDepartmentNull() {
-                this[this.tableDataTable1.DepartmentColumn] = global::System.Convert.DBNull;
+            public void SetEmailNull() {
+                this[this.tablespRVEmpList.EmailColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsstartDayNull() {
-                return this.IsNull(this.tableDataTable1.startDayColumn);
+            public bool IsTelephoneNull() {
+                return this.IsNull(this.tablespRVEmpList.TelephoneColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetstartDayNull() {
-                this[this.tableDataTable1.startDayColumn] = global::System.Convert.DBNull;
+            public void SetTelephoneNull() {
+                this[this.tablespRVEmpList.TelephoneColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool IsendDayNull() {
-                return this.IsNull(this.tableDataTable1.endDayColumn);
+            public bool IsDepartmentIDNull() {
+                return this.IsNull(this.tablespRVEmpList.DepartmentIDColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public void SetendDayNull() {
-                this[this.tableDataTable1.endDayColumn] = global::System.Convert.DBNull;
+            public void SetDepartmentIDNull() {
+                this[this.tablespRVEmpList.DepartmentIDColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -808,22 +801,22 @@ namespace Webusitu {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public class DataTable1RowChangeEvent : global::System.EventArgs {
+        public class spRVEmpListRowChangeEvent : global::System.EventArgs {
             
-            private DataTable1Row eventRow;
+            private spRVEmpListRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTable1RowChangeEvent(DataTable1Row row, global::System.Data.DataRowAction action) {
+            public spRVEmpListRowChangeEvent(spRVEmpListRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public DataTable1Row Row {
+            public spRVEmpListRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -851,7 +844,7 @@ namespace Webusitu.DataSet2TableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class DataTable1TableAdapter : global::System.ComponentModel.Component {
+    public partial class spRVEmpListTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
         
@@ -865,7 +858,7 @@ namespace Webusitu.DataSet2TableAdapters {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-        public DataTable1TableAdapter() {
+        public spRVEmpListTableAdapter() {
             this.ClearBeforeFill = true;
         }
         
@@ -962,13 +955,13 @@ namespace Webusitu.DataSet2TableAdapters {
             this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "DataTable1";
-            tableMapping.ColumnMappings.Add("empId", "empId");
+            tableMapping.DataSetTable = "spRVEmpList";
+            tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("FName", "FName");
             tableMapping.ColumnMappings.Add("LName", "LName");
-            tableMapping.ColumnMappings.Add("Department", "Department");
-            tableMapping.ColumnMappings.Add("startDay", "startDay");
-            tableMapping.ColumnMappings.Add("endDay", "endDay");
+            tableMapping.ColumnMappings.Add("Email", "Email");
+            tableMapping.ColumnMappings.Add("Telephone", "Telephone");
+            tableMapping.ColumnMappings.Add("DepartmentID", "DepartmentID");
             tableMapping.ColumnMappings.Add("daysRemain", "daysRemain");
             this._adapter.TableMappings.Add(tableMapping);
         }
@@ -986,17 +979,16 @@ namespace Webusitu.DataSet2TableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT leaves.empId, employee.FName, employee.LName, leaves.Department, leaves.st" +
-                "artDay, leaves.endDay, employee.daysRemain\r\nFROM     leaves CROSS JOIN\r\n        " +
-                "          employee\r\nWHERE  (employee.Id = leaves.empId)";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].CommandText = "dbo.spRVEmpList";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DataSet2.DataTable1DataTable dataTable) {
+        public virtual int Fill(DataSet2.spRVEmpListDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1009,9 +1001,9 @@ namespace Webusitu.DataSet2TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DataSet2.DataTable1DataTable GetData() {
+        public virtual DataSet2.spRVEmpListDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            DataSet2.DataTable1DataTable dataTable = new DataSet2.DataTable1DataTable();
+            DataSet2.spRVEmpListDataTable dataTable = new DataSet2.spRVEmpListDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

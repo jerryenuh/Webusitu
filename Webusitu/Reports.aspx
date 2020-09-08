@@ -1,11 +1,98 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Reports.aspx.cs" Inherits="Webusitu.Reports" %>
+<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+<%@ Register assembly="Microsoft.ReportViewer.WebForms" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
-    <div style="height: 625px">
+   
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+      $(function () {
+          $("#tabs").tabs();
+          
+
+      });
+  </script>
+
+    
+    
+
+    <div id="tabs">
+        <div id="tabbs" runat="server">
+  <ul>
+    <li id="list1"><a href="#tabs-1">List Employees</a></li>
+    
+    <li id="list2"><a href="#tabs-3">List of Leave Records</a></li>
+  </ul>
+            </div>
+        <div id="tabs_11" runat="server">
+  <div id="tabs-1">
+      <br />
+      <br />
+         <rsweb:ReportViewer ID="ReportViewer2" runat="server" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor="" PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor="" SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor="" ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor="" ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" SizeToReportContent="True" PromptAreaCollapsed="True">
+        <localreport reportpath="Report2.rdlc">
+            <datasources>   
+                <rsweb:ReportDataSource DataSourceId="SqlDataSource2" Name="DataSet1" />
+            </datasources>
+        </localreport>
+    </rsweb:ReportViewer>
+  </div>
+            </div>
+  <div id="tabs-2">
+        
+  </div>
+ 
+</div>
+
+    <div id="tabs3" runat="server">
+<div id="tabs2" runat="server">
+     <div id="tabs-3">
+     
+      <rsweb:ReportViewer ID="ReportViewer1" runat="server" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor="" PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor="" SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor="" ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor="" ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" SizeToReportContent="True" PromptAreaCollapsed="True">
+        <localreport reportpath="Report1.rdlc">
+            <datasources>
+                <rsweb:ReportDataSource DataSourceId="SqlDataSource1" Name="DataSet1" />
+            </datasources>
+        </localreport>
+    </rsweb:ReportViewer>
+  </div>
+</div>
+    </div>
+
+ 
+
+   
+    
+    
+    <div style="height: 1010px">
+               
+                   
+             
+                    
+             
+        
+        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString2 %>" SelectCommand="spRVListofEmp" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
         <br />
-    <h2>Report Views</h2>
         <br />
-        Department:
-        <asp:DropDownList CssClass="form-control" ID="DepartmentDD" AutoPostBack="true" runat="server" DataSourceID="ReportDrop" DataTextField="Name" DataValueField="Name" OnSelectedIndexChanged="DepartmentDD_SelectedIndexChanged">
+        <br />
+        <br />
+        <br />
+        
+        <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="spRVEmpList" SelectCommandType="StoredProcedure"></asp:SqlDataSource>
+        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" SelectMethod="GetData" TypeName="Webusitu.DataSet2TableAdapters.spRVEmpListTableAdapter"></asp:ObjectDataSource>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+       <!-- Department:--->
+        <asp:DropDownList CssClass="form-control" ID="DepartmentDD" AutoPostBack="true" runat="server" DataSourceID="ReportDrop" DataTextField="Name" DataValueField="Name" OnSelectedIndexChanged="DepartmentDD_SelectedIndexChanged" Visible="False">
         </asp:DropDownList>
         <asp:SqlDataSource ID="ReportDrop" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="SELECT [Name] FROM [Department]"></asp:SqlDataSource>
         <asp:TextBox ID="DepID" runat="server" Visible="False"></asp:TextBox>
@@ -13,8 +100,7 @@
     
         <div style="height: 147px">
             <div style="float:left width: 285px; height: 129px ">
-                <h4 style="width: 159px">List of Employees</h4>
-                <asp:GridView ID="GridView1" runat="server" DataSourceID="EmployeeTable" AutoGenerateColumns="False" DataKeyNames="Id" Width="376px" HorizontalAlign="Left" AllowSorting="True" CssClass="table table-responsive" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                <asp:GridView ID="GridView1" runat="server" DataSourceID="EmployeeTable" AutoGenerateColumns="False" DataKeyNames="Id" Width="376px" HorizontalAlign="Left" AllowSorting="True" CssClass="table table-responsive" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal" Visible="False">
                     <Columns>
                         <asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id"  />
                         <asp:BoundField DataField="FName" HeaderText="FName" SortExpression="FName" />
@@ -42,7 +128,7 @@
                 </asp:SqlDataSource>
 
                 
-                <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="RecId" DataSourceID="Leaves" Width="418px" HorizontalAlign="Right"  AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table table-responsive" ForeColor="Black" GridLines="Horizontal">
+                <asp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" DataKeyNames="RecId" DataSourceID="Leaves" Width="418px" HorizontalAlign="Right"  AllowSorting="True" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" CssClass="table table-responsive" ForeColor="Black" GridLines="Horizontal" Visible="False">
                     
                     <Columns>
                         <asp:BoundField DataField="RecId" HeaderText="RecId" InsertVisible="True" ReadOnly="True" SortExpression="RecId" Visible="false" />
