@@ -42,24 +42,6 @@ namespace Webusitu
         protected global::Microsoft.Reporting.WebForms.ReportViewer ReportViewer2;
 
         /// <summary>
-        /// tabs3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tabs3;
-
-        /// <summary>
-        /// tabs2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tabs2;
-
-        /// <summary>
         /// ReportViewer1 control.
         /// </summary>
         /// <remarks>

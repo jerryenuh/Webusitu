@@ -18,8 +18,9 @@ namespace Webusitu
         SqlCommand cmd = new SqlCommand();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //tabs2.Visible = false;
-           
+
+            
+
 
         }
 
@@ -50,5 +51,7 @@ namespace Webusitu
             cmd.ExecuteNonQuery();
             connection.Close();
         }
+
+        
     }
 }

@@ -9,11 +9,25 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
       $(function () {
+         
           $("#tabs").tabs();
           
+         
 
       });
   </script>
+
+<script>
+    $(document).ready(function () {
+        $("#list1").click(function () {
+            $("#tabs3").hide();
+        });
+        $("#list2").click(function () {
+            $("#tabs3").show();
+        });
+    });
+
+</script>
 
     
     
@@ -45,8 +59,8 @@
  
 </div>
 
-    <div id="tabs3" runat="server">
-<div id="tabs2" runat="server">
+    <div id="tabs3" >
+<div id="tabs2" ]>
      <div id="tabs-3">
      
       <rsweb:ReportViewer ID="ReportViewer1" runat="server" BackColor="" ClientIDMode="AutoID" HighlightBackgroundColor="" InternalBorderColor="204, 204, 204" InternalBorderStyle="Solid" InternalBorderWidth="1px" LinkActiveColor="" LinkActiveHoverColor="" LinkDisabledColor="" PrimaryButtonBackgroundColor="" PrimaryButtonForegroundColor="" PrimaryButtonHoverBackgroundColor="" PrimaryButtonHoverForegroundColor="" SecondaryButtonBackgroundColor="" SecondaryButtonForegroundColor="" SecondaryButtonHoverBackgroundColor="" SecondaryButtonHoverForegroundColor="" SplitterBackColor="" ToolbarDividerColor="" ToolbarForegroundColor="" ToolbarForegroundDisabledColor="" ToolbarHoverBackgroundColor="" ToolbarHoverForegroundColor="" ToolBarItemBorderColor="" ToolBarItemBorderStyle="Solid" ToolBarItemBorderWidth="1px" ToolBarItemHoverBackColor="" ToolBarItemPressedBorderColor="51, 102, 153" ToolBarItemPressedBorderStyle="Solid" ToolBarItemPressedBorderWidth="1px" ToolBarItemPressedHoverBackColor="153, 187, 226" SizeToReportContent="True" PromptAreaCollapsed="True">
