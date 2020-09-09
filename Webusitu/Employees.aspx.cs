@@ -23,6 +23,17 @@ namespace Webusitu
             addEmployeeDiv.Visible = true;
             addEmployeeBtn.Visible = false;
 
+            if (Session["ID"] == null && Session["Role"] == null)
+            {
+                Server.Transfer("Logout.aspx");
+            }
+            string role = Session["Role"].ToString();
+            if (String.Equals(role, "user"))
+            {
+                Server.Transfer("Leave.aspx");
+                
+            }
+
         }
 
         protected void Button1_Click(object sender, EventArgs e)

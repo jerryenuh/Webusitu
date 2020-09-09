@@ -26,6 +26,16 @@ namespace Webusitu
             {
                 PopulateGridView();
             }
+            if (Session["ID"] == null && Session["Role"] == null)
+            {
+                Server.Transfer("Logout.aspx");
+            }
+            string role = Session["Role"].ToString();
+            if (String.Equals(role, "user"))
+            {
+                Server.Transfer("Leave.aspx");
+
+            }
         }
 
         void PopulateGridView()

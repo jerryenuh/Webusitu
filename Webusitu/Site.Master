@@ -66,6 +66,9 @@
         </div>
       </li>
     </ul>
+      <form>
+      <a class="btn btn-light" href="Logout.aspx">Logout</a>
+          </form>
   </div>
 </nav>
         <div class="container body-content">

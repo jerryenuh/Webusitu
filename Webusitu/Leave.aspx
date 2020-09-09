@@ -16,7 +16,7 @@
     
     <div>
         <label>ID</label>
-        <asp:TextBox CssClass="form-control" ID="txtID" runat="server" AutoPostBack="True" BorderStyle="Solid" Width="152px" ReadOnly="True" />
+        <asp:TextBox CssClass="form-control" ID="txtID" runat="server" AutoPostBack="True" BorderStyle="Solid" Width="152px" />
         <asp:Label ID="errorlbl" runat="server" Text="" BackColor="White" Font-Bold="True" Font-Italic="True" ForeColor="Red"></asp:Label>
         
         <br />
@@ -36,8 +36,6 @@
         <span>
 
         
-        <asp:ImageButton  ID="ImageButton1" runat="server" OnClick="ImageButton1_Click" Width="22px" ImageUrl="~/Content/Calendar.png" />
-        <br />
         <asp:Calendar ID="calendar" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender" OnSelectionChanged="Calendar1_SelectionChanged">
             <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
             <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
@@ -48,6 +46,10 @@
             <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
             <WeekendDayStyle BackColor="#CCCCFF" />
         </asp:Calendar>
+
+        
+        <asp:ImageButton  ID="ImageButton1" runat="server" OnClick="ImageButton1_Click" Width="22px" ImageUrl="~/Content/Calendar.png" />
+        <br />
         <br />
         
         

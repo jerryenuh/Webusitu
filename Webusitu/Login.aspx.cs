@@ -98,8 +98,8 @@ namespace Webusitu
             read.Close();
 
             Session["Role"] = role;
-            Server.Transfer("Leave.aspx");
-            Server.Transfer("Site.Master");
+            //Server.Transfer("Leave.aspx");
+            //Server.Transfer("Site.Master");
             System.Diagnostics.Debug.WriteLine(role);
         }
 

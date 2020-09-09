@@ -110,25 +110,31 @@ namespace Webusitu
             SqlDataAdapter adapter = new SqlDataAdapter();
             connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
             connection.Open();
-            if (!Page.IsPostBack)
-            {
+            
+                
+                if (Session["ID"] == null && Session["Role"]==null)
+                {
+                    Server.Transfer("Logout.aspx");
+                }
+                else
+                {
+                    idsubmitbtn.Visible = false;
+                    
+                    leavediv.Visible = true;
+                    datediv.Visible = true;
+                    submitdiv.Visible = true;
+                    txtID.Text = Session["ID"].ToString();
+                    idsubmitbtn_Click(sender, e);
+                }
 
-                idsubmitbtn.Visible = false;
-                calendar.Visible = false;
-                leavediv.Visible = true;
-                datediv.Visible = true;
-                submitdiv.Visible = true;
-                txtID.Text = Session["ID"].ToString();
-                idsubmitbtn_Click(sender, e);
-               
-
-            }
+             
             //errorlbl.Text = "The Id you have entered does not exist so please try again";
 
-           // txtID.Text = Session["ID"].ToString();
+            // txtID.Text = Session["ID"].ToString();
 
-
-            }
+            //calendar.Visible = false;
+            calendar.Visible = true;
+        }
 
         protected void idsubmitbtn_Click(object sender, EventArgs e)
         {
@@ -312,7 +318,7 @@ namespace Webusitu
         {
             Response.Write(calendar.SelectedDate.ToString());
             startdate.Text = calendar.SelectedDate.ToShortDateString();
-            calendar.Visible = false;
+            //calendar.Visible = false;
             int dayamount = Convert.ToInt32(txtDays.Text);
             //calendar.SelectedDate.AddDays(dayamount);
             //check for weekends 
@@ -328,7 +334,7 @@ namespace Webusitu
              *      newDate = weekendCheck(newDate);
              */
             newDate = weekendCheck(newDate);
-
+            /*
             if (txtDays.Text==String.Empty)
                 {
                     enddatetxt.Text = " ";
@@ -342,7 +348,7 @@ namespace Webusitu
                 {
                     enddatetxt.Text = "";
                 }
-            
+            */
             newDate = weekendCheck(newDate);
             string Department = "";
             cmd = new SqlCommand("spFindDepIdfromId", connection);
@@ -458,7 +464,7 @@ namespace Webusitu
             }
             catch (Exception)
             {
-                txtDays.Text = "0";
+                txtDays.Text = "";
             }
             
 
@@ -469,10 +475,12 @@ namespace Webusitu
         {
             calendar.SelectedDate = Convert.ToDateTime(startdate.Text);
 
+           
             if (startdate.Text == String.Empty  ||txtDays.Text == String.Empty)
             {
                 enddatetxt.Text = "";
             }
+           
         }
     }
 }
