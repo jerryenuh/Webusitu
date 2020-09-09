@@ -110,17 +110,22 @@ namespace Webusitu
             SqlDataAdapter adapter = new SqlDataAdapter();
             connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
             connection.Open();
-            if (!IsPostBack)
+            if (!Page.IsPostBack)
             {
 
-
-                leavediv.Visible = false;
-                datediv.Visible = false;
-                submitdiv.Visible = false;
+                idsubmitbtn.Visible = false;
+                calendar.Visible = false;
+                leavediv.Visible = true;
+                datediv.Visible = true;
+                submitdiv.Visible = true;
+                txtID.Text = Session["ID"].ToString();
+                idsubmitbtn_Click(sender, e);
                
-            }
-                //errorlbl.Text = "The Id you have entered does not exist so please try again";
 
+            }
+            //errorlbl.Text = "The Id you have entered does not exist so please try again";
+
+           // txtID.Text = Session["ID"].ToString();
 
 
             }
@@ -305,7 +310,7 @@ namespace Webusitu
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
-            
+            Response.Write(calendar.SelectedDate.ToString());
             startdate.Text = calendar.SelectedDate.ToShortDateString();
             calendar.Visible = false;
             int dayamount = Convert.ToInt32(txtDays.Text);
@@ -418,6 +423,9 @@ namespace Webusitu
             {
                 e.Day.IsSelectable = false;
             }
+
+           
+            
         }
 
         protected void txtDays_TextChanged(object sender, EventArgs e)
