@@ -14,7 +14,7 @@ namespace Webusitu
             Session.Remove("ID");
             Session.Remove("Role");
             Session.RemoveAll();
-            Server.Transfer("Login.aspx");
+            Response.Redirect("Login.aspx");
         }
     }
 }

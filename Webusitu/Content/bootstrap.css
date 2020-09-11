@@ -4247,7 +4247,8 @@ input[type="button"].btn-block {
 .nav-tabs .nav-link {
   border: 1px solid transparent;
   border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;e
+ex
 }
 
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
@@ -4280,7 +4281,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #007bff;
+  background-color:nnnnnnnf;
 }
 
 .nav-fill > .nav-link,
@@ -4340,6 +4341,7 @@ input[type="button"].btn-block {
   font-size: 1.25rem;
   line-height: inherit;
   white-space: nowrap;
+  
 }
 
 .navbar-brand:hover, .navbar-brand:focus {
@@ -4409,8 +4411,10 @@ input[type="button"].btn-block {
   .navbar-expand-sm > .container-fluid, .navbar-expand-sm > .container-sm, .navbar-expand-sm > .container-md, .navbar-expand-sm > .container-lg, .navbar-expand-sm > .container-xl {
     padding-right: 0;
     padding-left: 0;
+
   }
 }
+
 
 @media (min-width: 576px) {
   .navbar-expand-sm {

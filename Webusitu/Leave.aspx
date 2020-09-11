@@ -1,17 +1,23 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Leave.aspx.cs" Inherits="Webusitu.Contact" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-     
+    
+    
+        <script  type="text/javascript">
+            function validate() {
+                confirm("Press Ok To Confirm?"); lue;
+
+            }
+        </script>
+    
+
     <h2><%: Title %>
     </h2>
+    <br />
+    <br />
     <h2>Apply For Leave Down Below.</h2>
     <p>&nbsp;</p>
-    <script  type="text/javascript">
-        function validate() {
-            confirm("Press Ok To Confirm?"); lue;
-            
-        }
-    </script>
+    
      
     
     <div>
@@ -31,24 +37,26 @@
     </div>
     <div id="datediv" runat="server">
         <label>Start Date</label>&nbsp;
-        <asp:TextBox CssClass="form-control" ID="startdate" runat="server" Width="129px" OnTextChanged="startdate_TextChanged" placeholder ="mm/dd/yyyy"></asp:TextBox>
+        <asp:TextBox CssClass="form-control" ID="startdate" runat="server" Width="129px"  AutoPostBack="True" OnTextChanged="startdate_TextChanged" placeholder ="mm/dd/yyyy"></asp:TextBox>
 
         <span>
 
         
-        <asp:Calendar ID="calendar" runat="server" BackColor="White" BorderColor="#3366CC" BorderWidth="1px" CellPadding="1" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="#003399" Height="200px" Width="220px" OnDayRender="Calendar1_DayRender" OnSelectionChanged="Calendar1_SelectionChanged">
-            <DayHeaderStyle BackColor="#99CCCC" ForeColor="#336666" Height="1px" />
-            <NextPrevStyle Font-Size="8pt" ForeColor="#CCCCFF" />
-            <OtherMonthDayStyle ForeColor="#999999" />
-            <SelectedDayStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
-            <SelectorStyle BackColor="#99CCCC" ForeColor="#336666" />
-            <TitleStyle BackColor="#003399" BorderColor="#3366CC" BorderWidth="1px" Font-Bold="True" Font-Size="10pt" ForeColor="#CCCCFF" Height="25px" />
-            <TodayDayStyle BackColor="#99CCCC" ForeColor="White" />
-            <WeekendDayStyle BackColor="#CCCCFF" />
+        <asp:ImageButton  ID="ImageButton1" runat="server" OnClick="ImageButton1_Click" Width="22px" ImageUrl="~/Content/Calendar.png" />
+            <ajaxToolkit:CalendarExtender ID="CalendarExtender1" runat="server" TargetControlID="startdate" PopupButtonID="calendarimg" DefaultView="Days" Format="MM/dd/yyyy" OnClientDateSelectionChanged="checkDate"  />
+        
+        <asp:Calendar ID="calendar" runat="server" BackColor="White" BorderColor="#999999" CellPadding="4" DayNameFormat="Shortest" Font-Names="Verdana" Font-Size="8pt" ForeColor="Black" Height="180px" Width="200px" OnDayRender="Calendar1_DayRender" OnSelectionChanged="Calendar1_SelectionChanged">
+            <DayHeaderStyle BackColor="#CCCCCC" Font-Bold="True" Font-Size="7pt" />
+            <NextPrevStyle VerticalAlign="Bottom" />
+            <OtherMonthDayStyle ForeColor="#808080" />
+            <SelectedDayStyle BackColor="#666666" Font-Bold="True" ForeColor="White" />
+            <SelectorStyle BackColor="#CCCCCC" />
+            <TitleStyle BackColor="#999999" BorderColor="Black" Font-Bold="True" />
+            <TodayDayStyle BackColor="#CCCCCC" ForeColor="Black" />
+            <WeekendDayStyle BackColor="#FFFFCC" />
         </asp:Calendar>
 
         
-        <asp:ImageButton  ID="ImageButton1" runat="server" OnClick="ImageButton1_Click" Width="22px" ImageUrl="~/Content/Calendar.png" />
         <br />
         <br />
         
@@ -56,7 +64,7 @@
 
         </span>
         <label>End Date</label>&nbsp;
-        <asp:TextBox ID="enddatetxt" runat="server" ReadOnly="True"></asp:TextBox>
+        <asp:TextBox ID="enddatetxt" CssClass="form-control" runat="server" ReadOnly="True"></asp:TextBox>
         <asp:Label ID="errorlbl2" runat="server" ForeColor="Red"></asp:Label>
         <br />
 &nbsp;<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LeaveApplicationSystemConnectionString %>" SelectCommand="SELECT * FROM [leaves]"></asp:SqlDataSource>

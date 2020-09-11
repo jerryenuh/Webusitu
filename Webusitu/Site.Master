@@ -38,39 +38,36 @@
                 <%--Site Scripts--%>
             </Scripts>
         </asp:ScriptManager>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-primary" id="navbar">
+    <div class="container">
+     <a class="navbar-brand" href="Leave.aspx" style="margin-left:-130px;">
+          <img src="Content/HEART-NSTA-Trust-Logo.png" width="30" height="30" alt="" loading="lazy">
+          Leave Application System
+     </a>
+ <ul class="navbar-nav" style="margin-right:-150px;">
+  <li class="nav-item active">
 
- <nav class="navbar navbar-expand-sm navbar-dark bg-primary" style="padding-top:-50px; margin-top:-50px">
-  <a class="navbar-brand" href="Leave.aspx">Leave</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" href="Leave.aspx">Leave Application<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item"  id="adminReports" runat="server" >
-        <a class="nav-link" href="Reports.aspx">Reports</a>
-      </li>
-      <li class="nav-item" id= "adminHoliday" runat="server">
-        <a class="nav-link" href="Holidays.aspx">Holidays</a>
-      </li>
-      <li class="nav-item dropdown" id="dropdown" runat="server">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Employees
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" href="Employees.aspx">Add Employees</a>
-          <a class="dropdown-item" href="UpdateEmp.aspx">Edit/Update Employees</a>
-         
-        </div>
-      </li>
-    </ul>
-      <form>
-      <a class="btn btn-light" href="Logout.aspx">Logout</a>
-          </form>
-  </div>
-</nav>
+   <a class="nav-link" href="Leave.aspx">Apply For Leave</a>
+  </li>
+  <li id="dropdown" runat="server" class="nav-item dropdown active">
+    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Employees</a>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" href="Employees.aspx">Add Employee</a>
+      <a  class="dropdown-item" href="UpdateEmp.aspx">Edit/Update Employees</a>
+      
+    </div>
+  </li>
+  <li id="adminReports" runat="server" class="nav-item active">
+    <a class="nav-link" href="Reports.aspx" >Reports</a>
+  </li>
+  <li id="adminHoliday" runat="server" class="nav-item active">
+    <a  class="nav-link" href="Holidays.aspx" >Holidays</a>
+  </li>
+     
+     <a type="button" class="btn btn-outline-light" href="Logout.aspx">Logout</a>
+</ul>
+       </div>
+    </nav>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
             </asp:ContentPlaceHolder>

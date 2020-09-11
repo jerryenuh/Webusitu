@@ -22,7 +22,7 @@ namespace Webusitu
         SqlParameter sp2 = new SqlParameter();
         SqlParameter sp3 = new SqlParameter();
         SqlParameter sp4 = new SqlParameter();
-        
+
         bool flag = false;
         //String test;
 
@@ -30,33 +30,33 @@ namespace Webusitu
         public DateTime weekendCheck(DateTime sDate)
         {
             DateTime eDate = new DateTime();
-                
+
             eDate = sDate;
             sDate = sDate.AddDays(-1);
             // make sure it is not a saturday or Sunday
             // if it is add another day
 
-            do 
+            do
             {
 
-                
+
                 System.Diagnostics.Debug.WriteLine("Yo");
                 System.Diagnostics.Debug.WriteLine(sDate);
                 sDate = sDate.AddBusinessDays(1);
                 // return eDate;
-            } while ((sDate.DayOfWeek == DayOfWeek.Saturday || sDate.DayOfWeek == DayOfWeek.Sunday || isHoliday(sDate) == true)) ;
+            } while ((sDate.DayOfWeek == DayOfWeek.Saturday || sDate.DayOfWeek == DayOfWeek.Sunday || isHoliday(sDate) == true));
 
             // More than one day so add days day by day and check each time for
             // weekend. do recursively
-            
+
             return sDate;
-            
+
         }
 
         private bool isHoliday(DateTime eDate)
         {
             bool status = false;   // not holiday is default
-           
+
             try
             {
                 // Always holidays are Jan 1, Dec 25, 26 and Aug 1,6
@@ -94,7 +94,7 @@ namespace Webusitu
                     }
                     rd.Close();
                 }
-               
+
             }
             catch (Exception)
             {
@@ -102,38 +102,40 @@ namespace Webusitu
             }
 
             return status;
-            
+
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
             SqlDataAdapter adapter = new SqlDataAdapter();
             connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
             connection.Open();
-            
-                
-                if (Session["ID"] == null && Session["Role"]==null)
+            if (!IsPostBack)
+            {
+
+                if (Session["ID"] == null && Session["Role"] == null)
                 {
                     Server.Transfer("Logout.aspx");
                 }
                 else
                 {
                     idsubmitbtn.Visible = false;
-                    
+
                     leavediv.Visible = true;
                     datediv.Visible = true;
                     submitdiv.Visible = true;
+                    ImageButton1.Visible = false;
                     txtID.Text = Session["ID"].ToString();
                     idsubmitbtn_Click(sender, e);
+                    
                 }
+               
 
-             
+            }
             //errorlbl.Text = "The Id you have entered does not exist so please try again";
 
-            // txtID.Text = Session["ID"].ToString();
 
-            //calendar.Visible = false;
-            calendar.Visible = true;
+
         }
 
         protected void idsubmitbtn_Click(object sender, EventArgs e)
@@ -142,9 +144,9 @@ namespace Webusitu
             cmd = new SqlCommand("spSelectAllemployee", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader rd = cmd.ExecuteReader();
-            string daysRemain ="";
-            string Fname= "";
-            
+            string daysRemain = "";
+            string Fname = "";
+
             while (rd.Read())
             {
                 if (rd[0].ToString() == txtID.Text)
@@ -158,7 +160,7 @@ namespace Webusitu
                     calendar.Visible = false;
                     Fname = "" + rd.GetValue(1).ToString() + " " + rd.GetValue(2).ToString();
                     daysRemain = rd.GetValue(6).ToString();
-                    errorlbl.Text = "Welcome " + Fname + " you have, " + daysRemain +" days remaining";
+                    errorlbl.Text = "Welcome " + Fname + " you have, " + daysRemain + " days remaining";
                     break;
                 }
                 else
@@ -173,11 +175,11 @@ namespace Webusitu
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
-            
+
         {
-            
+
             cmd.Connection = connection;
-            
+
             cmd = new SqlCommand("spSelectAllemployee", connection);
             cmd.CommandType = CommandType.StoredProcedure;
             SqlDataReader rd = cmd.ExecuteReader();
@@ -190,7 +192,7 @@ namespace Webusitu
                     datediv.Visible = true;
                     break;
                 }
-                
+
             }
             rd.Close();
             if (flag == true)
@@ -198,7 +200,7 @@ namespace Webusitu
                 //Code to send things to DB
                 string empid = txtID.Text;
                 int lastdays = Convert.ToInt32(txtDays.Text);
-                int dayamount= Convert.ToInt32(txtDays.Text);
+                int dayamount = Convert.ToInt32(txtDays.Text);
                 string Department = "";
 
                 cmd = new SqlCommand("spDaysRemainFromEmpId", connection);
@@ -206,8 +208,8 @@ namespace Webusitu
 
                 cmd.Parameters.Add("@Id", SqlDbType.VarChar).Value = txtID.Text;
                 SqlDataReader read = cmd.ExecuteReader();
-                int daysRemain=0;
-                int calDRamains =0;
+                int daysRemain = 0;
+                int calDRamains = 0;
                 // int daysRemain2;
 
                 while (read.Read())
@@ -215,7 +217,7 @@ namespace Webusitu
                     daysRemain = Convert.ToInt32(read.GetValue(0).ToString());
                     break;
                     //System.Diagnostics.Debug.WriteLine(daysRemain);
-                    
+
                 }
                 read.Close();
                 cmd.Parameters.Clear();
@@ -234,7 +236,7 @@ namespace Webusitu
                 read.Close();
 
                 if (calDRamains >= 0)
-                    {
+                {
                     DateTime startDate = new DateTime();
                     string cStartDate = startdate.Text;
                     startDate = Convert.ToDateTime(cStartDate);
@@ -274,14 +276,14 @@ namespace Webusitu
 
                         connection.Close();
                     }
-                    
+
                 }
                 else if (calDRamains == 0)
                 {
 
                     testlbl.Text = "You have no days left to use";
                 }
-                else
+                else if(calDRamains <0)
                 {
                     testlbl.Text = "You have went over the amount of days you have remaining. You have" + daysRemain++ + "days.";
                 }
@@ -296,14 +298,14 @@ namespace Webusitu
                 datediv.Visible = false;
                 //submitdiv.Visible = false;
             }
-            
+
             connection.Close();
             Response.AddHeader("Refresh", "3");
         }
 
         protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
         {
-            if(calendar.Visible == true)
+            if (calendar.Visible == true)
             {
                 calendar.Visible = false;
             }
@@ -316,16 +318,16 @@ namespace Webusitu
 
         protected void Calendar1_SelectionChanged(object sender, EventArgs e)
         {
-            Response.Write(calendar.SelectedDate.ToString());
+
             startdate.Text = calendar.SelectedDate.ToShortDateString();
-            //calendar.Visible = false;
+            calendar.Visible = false;
             int dayamount = Convert.ToInt32(txtDays.Text);
             //calendar.SelectedDate.AddDays(dayamount);
             //check for weekends 
             DateTime newDate = new DateTime();
 
             newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
-            
+
             //System.Diagnostics.Debug.WriteLine(newDate);
             //System.Diagnostics.Debug.WriteLine(dayamount);
             /* you orginally had
@@ -334,21 +336,21 @@ namespace Webusitu
              *      newDate = weekendCheck(newDate);
              */
             newDate = weekendCheck(newDate);
-            /*
-            if (txtDays.Text==String.Empty)
-                {
-                    enddatetxt.Text = " ";
-                }
-                else
-                {
-                    enddatetxt.Text = newDate.ToShortDateString();
-                }
 
-                if (startdate.Text == String.Empty || txtDays.Text == String.Empty)
-                {
-                    enddatetxt.Text = "";
-                }
-            */
+            if (txtDays.Text == String.Empty)
+            {
+                enddatetxt.Text = " ";
+            }
+            else
+            {
+                enddatetxt.Text = newDate.ToShortDateString();
+            }
+
+            if (startdate.Text == String.Empty || txtDays.Text == String.Empty)
+            {
+                enddatetxt.Text = "";
+            }
+
             newDate = weekendCheck(newDate);
             string Department = "";
             cmd = new SqlCommand("spFindDepIdfromId", connection);
@@ -386,7 +388,7 @@ namespace Webusitu
             System.Diagnostics.Debug.WriteLine(counter);
             connection.Close();
 
-            if(counter > 0)
+            if (counter > 0)
             {
                 errorlbl2.Text = "You cannot apply for leave in this time period";
             }
@@ -395,7 +397,7 @@ namespace Webusitu
                 errorlbl2.Text = "";
             }
 
-            
+
 
             /*while (rd.Read())
             {
@@ -420,7 +422,7 @@ namespace Webusitu
 
         protected void Calendar1_DayRender(object sender, DayRenderEventArgs e)
         {
-            if(e.Day.IsOtherMonth || e.Day.IsWeekend)
+            if (e.Day.IsOtherMonth || e.Day.IsWeekend)
             {
                 e.Day.IsSelectable = false;
             }
@@ -429,14 +431,11 @@ namespace Webusitu
             {
                 e.Day.IsSelectable = false;
             }
-
-           
-            
         }
 
         protected void txtDays_TextChanged(object sender, EventArgs e)
         {
-            
+
             try
             {
                 int dayamount = Convert.ToInt32(txtDays.Text);
@@ -445,9 +444,9 @@ namespace Webusitu
                 DateTime newDate = new DateTime();
                 //newDate = Convert.ToDateTime(calendar.SelectedDate);
                 newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
-                newDate = weekendCheck(newDate); 
+                newDate = weekendCheck(newDate);
                 //newDate = Convert.ToDateTime(calendar.SelectedDate).AddBusinessDays(dayamount);
-                if (txtDays.Text==String.Empty)
+                if (txtDays.Text == String.Empty)
                 {
                     enddatetxt.Text = " ";
                 }
@@ -464,9 +463,9 @@ namespace Webusitu
             }
             catch (Exception)
             {
-                txtDays.Text = "";
+                txtDays.Text = "0";
             }
-            
+
 
 
         }
@@ -475,12 +474,95 @@ namespace Webusitu
         {
             calendar.SelectedDate = Convert.ToDateTime(startdate.Text);
 
-           
-            if (startdate.Text == String.Empty  ||txtDays.Text == String.Empty)
+            if (startdate.Text == String.Empty || txtDays.Text == String.Empty)
             {
                 enddatetxt.Text = "";
             }
-           
+
+            string date="";
+            DateTime Date = new DateTime();
+            date = startdate.Text;
+
+            Date = Convert.ToDateTime(date);
+
+            
+            calendar.Visible = false;
+            int dayamount = Convert.ToInt32(txtDays.Text);
+            //calendar.SelectedDate.AddDays(dayamount);
+            //check for weekends 
+            DateTime newDate = new DateTime();
+
+            newDate =Date.AddBusinessDays(dayamount);
+
+            //System.Diagnostics.Debug.WriteLine(newDate);
+            //System.Diagnostics.Debug.WriteLine(dayamount);
+            /* you orginally had
+             *      weekendCheck(newDate);
+             * when it was suppose to be
+             *      newDate = weekendCheck(newDate);
+             */
+            newDate = weekendCheck(newDate);
+
+            if (txtDays.Text == String.Empty)
+            {
+                enddatetxt.Text = " ";
+            }
+            else if(startdate.Text != String.Empty)
+            {
+                enddatetxt.Text = newDate.ToShortDateString();
+            }
+
+            if (startdate.Text == String.Empty || txtDays.Text == String.Empty)
+            {
+                enddatetxt.Text = "";
+            }
+
+            newDate = weekendCheck(newDate);
+            string Department = "";
+            cmd = new SqlCommand("spFindDepIdfromId", connection);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add("@Id", SqlDbType.VarChar).Value = txtID.Text;
+            SqlDataReader read = cmd.ExecuteReader();
+            while (read.Read())
+            {
+                Department = read.GetValue(0).ToString();
+                break;
+                //System.Diagnostics.Debug.WriteLine(daysRemain);
+
+            }
+            read.Close();
+
+            string beginningofall = calendar.SelectedDate.ToShortDateString();
+            DateTime beginningDateTime = Convert.ToDateTime(beginningofall);
+            cmd = new SqlCommand("spDateChek", connection);
+            SqlDataAdapter adapter = new SqlDataAdapter();
+            connection = new SqlConnection(ConfigurationManager.ConnectionStrings["LeaveApplicationSystemConnectionString"].ConnectionString);
+
+            connection.Open();
+            cmd.Connection = connection;
+
+            cmd.Parameters.AddWithValue("@SD", SqlDbType.Date).Value = beginningDateTime.ToString("MMM dd,yyyy");
+            System.Diagnostics.Debug.WriteLine(beginningDateTime);
+            cmd.Parameters.AddWithValue("@DId", SqlDbType.Int).Value = Department;
+            var returnParameter = cmd.Parameters.Add("@returnVal", SqlDbType.Int);
+            returnParameter.Direction = ParameterDirection.ReturnValue;
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            cmd.ExecuteNonQuery();
+            var result = returnParameter.Value;
+            int counter = int.Parse(result.ToString());
+            System.Diagnostics.Debug.WriteLine(counter);
+            connection.Close();
+
+            if (counter > 0)
+            {
+                errorlbl2.Text = "You cannot apply for leave in this time period";
+            }
+            else
+            {
+                errorlbl2.Text = "";
+            }
+
         }
     }
 }

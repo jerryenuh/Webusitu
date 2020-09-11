@@ -51,7 +51,7 @@ namespace Webusitu
                         Session["ID"] = txtUsername.Text;
                         getRoles();
                         //System.Diagnostics.Debug.WriteLine("hia");
-                        Server.Transfer("Leave.aspx");
+                        Response.Redirect("Leave.aspx");
                         lblError.Text = "Successful Login";
                         
                     }
